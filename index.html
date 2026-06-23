@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principia: Relational Physics Tests for Video Models</title>
+    <meta name="description" content="Principia evaluates Newtonian physics in video models through calibration-independent relational consistency between paired objects.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- KaTeX for equation rendering -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+</head>
+
+<body>
+
+<!-- ===================================================== -->
+<!-- TOP NAVIGATION -->
+<!-- ===================================================== -->
+
+<nav class="top-nav">
+    <ul>
+        <li><a href="#abstract" data-section="abstract">Abstract</a></li>
+        <li><a href="#motivation" data-section="motivation">Motivation</a></li>
+        <li><a href="#scenarios" data-section="scenarios">Scenarios</a></li>
+        <li><a href="#invariance" data-section="invariance">Metric</a></li>
+        <li><a href="#results" data-section="results">Results</a></li>
+        <li><a href="#generations" data-section="generations">Gallery</a></li>
+        <li><a href="#analysis-results" data-section="analysis-results">Analysis</a></li>
+        <li><a href="#citation" data-section="citation">Citation</a></li>
+    </ul>
+</nav>
+
+<button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle light/dark mode">
+    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12h2.5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"/></svg>
+    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.4 14.7A8.5 8.5 0 0 1 9.3 3.6a8.5 8.5 0 1 0 11.1 11.1z"/></svg>
+</button>
+
+<!-- ===================================================== -->
+<!-- TITLE -->
+<!-- ===================================================== -->
+
+<section class="title-section" id="title">
+
+    <h1>Principia</h1>
+
+    <h2>
+        Relational Physics Tests for Video Models
+    </h2>
+
+    <p class="authors">
+        Varun Varma Thozhiyoor<sup>1*</sup>,
+        Shivam Tripathi<sup>1*</sup>,
+        Venkatesh Babu Radhakrishnan<sup>1</sup>,
+        Anand Bhattad<sup>2</sup>
+    </p>
+
+    <p class="affiliations">
+        <sup>1</sup>Indian Institute of Science &nbsp;&nbsp; <sup>2</sup>Johns Hopkins University
+    </p>
+
+    <p class="equal-contrib"><sup>*</sup>Equal contribution</p>
+
+    <div class="buttons">
+        <a href="assets/paper.pdf" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            Paper
+        </a>
+
+        <span class="btn btn-disabled" aria-disabled="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Code
+            <span class="btn-soon-badge">Coming soon</span>
+        </span>
+
+        <span class="btn btn-disabled" aria-disabled="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Demo
+            <span class="btn-soon-badge">Coming soon</span>
+        </span>
+
+        <span class="btn btn-disabled" aria-disabled="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg>
+            Data
+            <span class="btn-soon-badge">Coming soon</span>
+        </span>
+
+    </div>
+
+    <div class="hero-teaser">
+        <video autoplay muted loop playsinline class="hero-teaser-video">
+            <source src="assets/videos/hero.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="tldr-box title-tldr">
+
+        <h3>TL;DR</h3>
+
+        <p>
+            Modern video generators produce visually realistic motion,
+            but fail surprisingly simple Newtonian physics tests.
+            Principia evaluates physics using calibration-independent
+            relational constraints between paired objects and finds that
+            no evaluated generator exceeds 0.42 physical consistency despite
+            all scoring above 0.7 on VBench.
+        </p>
+
+    </div>
+
+    
+</section>
+
+
+
+
+<!-- ===================================================== -->
+<!-- ABSTRACT -->
+<!-- ===================================================== -->
+
+<section class="container" id="abstract">
+
+    <h2>Abstract</h2>
+
+    <p class="section-text">
+
+        Evaluating physical reasoning in video models is difficult because
+        absolute motion measurements depend on frame rate, object scale,
+        and camera calibration, all of which are often ambiguous or
+        unavailable in generated video. We propose a different approach.
+        When two objects in the same scene obey the same physical law,
+        their motions must satisfy predictable relationships, and these
+        relationships hold independent of calibration. We introduce
+        <span class="abs-hl">Principia</span>, a benchmark that evaluates Newtonian physics
+        through <span class="abs-hl">relational consistency</span> between paired objects.
+
+    </p>
+
+    <p class="section-text">
+
+        Principia spans <span class="abs-hl">eight phenomena</span>&mdash;gravity, restitution,
+        friction, rotational inertia, projectile motion, momentum,
+        pendulum, and mass&ndash;spring oscillation&mdash;across
+        translational, rotational, collisional, and oscillatory dynamics,
+        using real-world scenes recorded under controlled protocols.
+        We also introduce a <span class="abs-hl">calibration-independent consistency score</span>
+        that quantifies physical violation directly in image space.
+        Across thousands of generations from five state-of-the-art video
+        generators, no model exceeds <span class="abs-hl">0.42</span> on Principia despite all
+        scoring above <span class="abs-hl">0.7</span> on VBench. Vision-language models show
+        <span class="abs-hl">inverse failure profiles</span>, succeeding where generators fail and vice versa.
+
+    </p>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- MOTIVATION -->
+<!-- ===================================================== -->
+
+<section class="container wide" id="motivation">
+
+    <h2>Why Evaluate Relatively?</h2>
+
+
+    <div class="motivation-stack">
+
+        <div class="motivation-block">
+
+            <img
+                src="assets/figures/single_object.png"
+                class="motivation-img-full"
+                alt="Single object sliding down an incline, motion looks plausible">
+
+            <div class="motivation-block-text">
+                <h3>Single Object Motion</h3>
+                <p>
+                    A generated video of a single block sliding down an incline,
+                    shown at three timesteps and as a stroboscopic composite (right): <span class="highlight-purple">motion appears plausible</span>.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="motivation-block">
+
+            <img
+                src="assets/figures/paired_objects.png"
+                class="motivation-img-full"
+                alt="Two blocks of different mass released on identical inclines, arrival times compared">
+
+            <div class="motivation-block-text">
+                <h3>Paired Object Comparison</h3>
+                <p>
+                    A generated video of two blocks with different masses released
+                    simultaneously on identical inclines, where the blocks arrive
+                    at different times, violating the mass-independence invariant
+                    of gravitational acceleration. <span class="highlight-purple">This violation only becomes detectable
+                    through comparison</span>. 
+                    <!-- (<span data-katex="t_1 = t_2">t&#8321; = t&#8322;</span>). -->
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- PHYSICS SCENARIOS -->
+<!-- ===================================================== -->
+
+<section id="scenarios" class="container">
+
+    <div class="section-heading-row">
+        <h2>Physics Scenarios</h2>
+        <div class="speed-controls" id="scenario-speed-controls" aria-label="Playback speed">
+            <span class="speed-label">Speed</span>
+            <button class="speed-btn" data-speed="0.25">0.25×</button>
+            <button class="speed-btn" data-speed="0.5">0.5×</button>
+            <button class="speed-btn active" data-speed="1">1×</button>
+        </div>
+        <span class="gallery-panel-hint">Hover to preview &middot; Click to inspect</span>
+    </div>
+
+    <p class="section-subtitle">
+
+        Each scenario defines a relational invariant that must hold
+        whenever two objects obey the same physical law. Hover a card
+        to preview the invariant; click to inspect the recorded scene.
+
+    </p>
+
+    <div class="scenario-grid" id="scenario-cards">
+        <!-- populated by JS from SCENARIO_DEFS -->
+    </div>
+
+</section>
+
+<!-- Scenario detail modal -->
+<div class="scenario-modal-overlay" id="scenario-modal-overlay">
+    <div class="scenario-modal" role="dialog" aria-modal="true" aria-labelledby="scenario-modal-title">
+
+        <div class="scenario-modal-header">
+            <span id="scenario-modal-title">Scenario</span>
+            <div class="speed-controls" id="modal-speed-controls" aria-label="Playback speed">
+                <span class="speed-label">Speed</span>
+                <button class="speed-btn" data-speed="0.25">0.25×</button>
+                <button class="speed-btn" data-speed="0.5">0.5×</button>
+                <button class="speed-btn active" data-speed="1">1×</button>
+            </div>
+            <button class="scenario-modal-close" id="scenario-modal-close" type="button" aria-label="Close">
+                &times;
+            </button>
+        </div>
+
+        <div class="scenario-modal-tiles" id="scenario-modal-tiles">
+
+            <div class="scenario-modal-tile">
+                <video id="scenario-modal-video" controls playsinline></video>
+                <span class="scenario-modal-tile-label">Recorded Video</span>
+            </div>
+
+            <div class="scenario-modal-tile">
+                <img id="scenario-modal-image" src="" alt="">
+                <span class="scenario-modal-tile-label">Stroboscope</span>
+            </div>
+
+            <div class="scenario-modal-tile scenario-modal-tile-text">
+                <p id="scenario-modal-text" class="scenario-modal-explanation"></p>
+                <div class="scenario-modal-tile-eq-block">
+                    <span id="scenario-modal-eq" class="katex-eq"></span>
+                </div>
+                <span class="scenario-modal-tile-label">Info</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Generation detail modal -->
+<div class="scenario-modal-overlay" id="generation-modal-overlay">
+    <div class="scenario-modal" role="dialog" aria-modal="true" aria-labelledby="generation-modal-title">
+
+        <div class="scenario-modal-header">
+            <span id="generation-modal-title">Generation</span>
+            <div class="speed-controls" id="gen-modal-speed-controls" aria-label="Playback speed">
+                <span class="speed-label">Speed</span>
+                <button class="speed-btn" data-speed="0.25">0.25×</button>
+                <button class="speed-btn" data-speed="0.5">0.5×</button>
+                <button class="speed-btn active" data-speed="1">1×</button>
+            </div>
+            <button class="scenario-modal-close" id="generation-modal-close" type="button" aria-label="Close">
+                &times;
+            </button>
+        </div>
+
+        <div class="scenario-modal-tiles generation-modal-tiles-4" id="generation-modal-tiles">
+
+            <div class="scenario-modal-tile">
+                <img id="generation-modal-og" src="" alt="">
+                <span class="scenario-modal-tile-label">Original Frame</span>
+            </div>
+
+            <div class="scenario-modal-tile">
+                <img id="generation-modal-input" src="" alt="">
+                <span class="scenario-modal-tile-label">Conditioning Frame</span>
+            </div>
+
+            <div class="scenario-modal-tile">
+                <video id="generation-modal-video" controls playsinline loop></video>
+                <span class="scenario-modal-tile-label">Generated Video</span>
+            </div>
+
+            <div class="scenario-modal-tile">
+                <img id="generation-modal-stroboscope" src="" alt="">
+                <span class="scenario-modal-tile-label">Stroboscope</span>
+            </div>
+
+        </div>
+
+        <div class="generation-modal-result" id="generation-modal-result">
+            <span class="generation-modal-result-icon" aria-hidden="true"></span>
+            <span id="generation-modal-result-text"></span>
+        </div>
+
+    </div>
+</div>
+
+<!-- Image lightbox -->
+<div class="lightbox-overlay" id="lightbox-overlay">
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close image preview">
+        &times;
+    </button>
+    <img id="lightbox-image" src="" alt="">
+</div>
+
+
+
+<!-- ===================================================== -->
+<!-- INVARIANCE SCORE -->
+<!-- ===================================================== -->
+
+<section class="container" id="invariance">
+
+    <h2>Relational Physics Consistency Score</h2>
+
+    <p class="section-text">
+
+        For each phenomenon <span data-katex="\phi">&phi;</span>, the invariant defines two scalar
+        quantities <span data-katex="F_\phi(o_1)">F&#9737;(o&#8321;)</span> and
+        <span data-katex="F_\phi(o_2)">F&#9737;(o&#8322;)</span> that should be equal under correct physics.
+        Depending on the phenomenon, these quantities may correspond either to directly measured values (friction)
+        or to ratios derived from the measured values (gravity, spring, restitution, rotational inertia, pendulum).
+
+    </p>
+
+    <div class="equation-box">
+
+        <div class="equation katex-eq" data-katex="S_\phi \;=\; 1 \;-\; \dfrac{\left|F_\phi(o_1) - F_\phi(o_2)\right|}{\left|F_\phi(o_1)\right| + \left|F_\phi(o_2)\right|}">
+        </div>
+
+    </div>
+
+    <p class="section-text">
+
+        <span data-katex="S_\phi">S&#9737;</span> equals 1  when the invariant holds exactly
+        and decreases toward 0 as the violation grows; concretely,
+        <span data-katex="S_\phi = 0.9">S&#9737; = 0.9</span> corresponds to a roughly
+        10% relational asymmetry. 
+        The normalization makes <span data-katex="S_\phi">S&#9737;</span> unit-free and bounded in [0, 1];
+        
+
+    </p>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- RESULTS -->
+<!-- ===================================================== -->
+
+<section id="results" class="container">
+
+
+    <h2>Benchmark Results</h2>
+
+    <p class="section-subtitle">
+
+        No generator exceeds a continuous average consistency score of <span class="number-highlight">0.5</span>, despite all scoring above <span class="number-highlight">0.7</span> on VBench.
+
+    </p>
+
+    <p class="section-text" style="margin-top:0;">
+
+        For each physical phenomenon, we report a binary pass rate (top row)
+        and a continuous relational consistency score (bottom row).
+        The binary pass rate measures the fraction of samples for which <span data-katex="S_\phi \geq \tau">S&#9737; &ge; &tau;</span>, 
+        where <span data-katex="\tau = 0.8">&tau; = 0.8</span>.
+        Higher values indicate better adherence to the underlying
+        physical invariant. <b class="table-bold-note">Bold</b> indicates the best-performing model for each metric and phenomenon.
+
+    </p>
+
+    <div class="table-scroll">
+    <table class="results-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Model</th>
+                <th>Restitution</th>
+                <th>Gravity</th>
+                <th>Friction</th>
+                <th>Inertia</th>
+                <th>Projectile</th>
+                <th>Momentum</th>
+                <th>Spring</th>
+                <th>Pendulum</th>
+                <th>Avg</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr class="model-row">
+                <td rowspan="2">Wan2.2-5B</td>
+                <td>0.109</td>
+                <td>0.246</td>
+                <td>0.351</td>
+                <td>0.545</td>
+                <td>0.010</td>
+                <td><b>0.529</b></td>
+                <td>0.048</td>
+                <td>0.177</td>
+                <td>0.252</td>
+            </tr>
+            <tr class="std-row">
+                <td><em>0.190 &plusmn; 0.327</em></td>
+                <td><em>0.347 &plusmn; 0.415</em></td>
+                <td><em>0.347 &plusmn; 0.455</em></td>
+                <td><em>0.517 &plusmn; 0.457</em></td>
+                <td><em>0.010 &plusmn; 0.099</em></td>
+                <td><b><em>0.529 &plusmn; 0.499</em></b></td>
+                <td><em>0.164 &plusmn; 0.277</em></td>
+                <td><em>0.413 &plusmn; 0.363</em></td>
+                <td><em>0.315 &plusmn; 0.169</em></td>
+            </tr>
+
+            <tr class="model-row">
+                <td rowspan="2">Wan2.2-14B</td>
+                <td>0.188</td>
+                <td><b>0.558</b></td>
+                <td><b>0.633</b></td>
+                <td><b>0.776</b></td>
+                <td>0.227</td>
+                <td>0.250</td>
+                <td>0.056</td>
+                <td><b>0.315</b></td>
+                <td><b>0.375</b></td>
+            </tr>
+            <tr class="std-row">
+                <td><em>0.250 &plusmn; 0.388</em></td>
+                <td><b><em>0.674 &plusmn; 0.372</em></b></td>
+                <td><b><em>0.635 &plusmn; 0.428</em></b></td>
+                <td><b><em>0.760 &plusmn; 0.326</em></b></td>
+                <td><em>0.227 &plusmn; 0.419</em></td>
+                <td><em>0.250 &plusmn; 0.433</em></td>
+                <td><em>0.217 &plusmn; 0.297</em></td>
+                <td><b><em>0.594 &plusmn; 0.329</em></b></td>
+                <td><b><em>0.451 &plusmn; 0.220</em></b></td>
+            </tr>
+
+            <tr class="model-row">
+                <td rowspan="2">Cosmos-2.5-2B</td>
+                <td><b>0.336</b></td>
+                <td>0.545</td>
+                <td>0.069</td>
+                <td>0.045</td>
+                <td>0.000</td>
+                <td>0.309</td>
+                <td><b>0.087</b></td>
+                <td>0.069</td>
+                <td>0.183</td>
+            </tr>
+            <tr class="std-row">
+                <td><b><em>0.482 &plusmn; 0.401</em></b></td>
+                <td><em>0.620 &plusmn; 0.402</em></td>
+                <td><em>0.083 &plusmn; 0.264</em></td>
+                <td><em>0.059 &plusmn; 0.212</em></td>
+                <td><em>0.000 &plusmn; 0.000</em></td>
+                <td><em>0.309 &plusmn; 0.462</em></td>
+                <td><b><em>0.279 &plusmn; 0.300</em></b></td>
+                <td><em>0.265 &plusmn; 0.317</em></td>
+                <td><em>0.262 &plusmn; 0.200</em></td>
+            </tr>
+
+            <tr class="model-row">
+                <td rowspan="2">Cosmos-2.5-14B</td>
+                <td>0.196</td>
+                <td>0.290</td>
+                <td>0.362</td>
+                <td>0.081</td>
+                <td>0.030</td>
+                <td>0.279</td>
+                <td>0.038</td>
+                <td>0.242</td>
+                <td>0.190</td>
+            </tr>
+            <tr class="std-row">
+                <td><em>0.241 &plusmn; 0.382</em></td>
+                <td><em>0.407 &plusmn; 0.417</em></td>
+                <td><em>0.373 &plusmn; 0.449</em></td>
+                <td><em>0.098 &plusmn; 0.279</em></td>
+                <td><em>0.030 &plusmn; 0.171</em></td>
+                <td><em>0.279 &plusmn; 0.449</em></td>
+                <td><em>0.258 &plusmn; 0.273</em></td>
+                <td><em>0.556 &plusmn; 0.322</em></td>
+                <td><em>0.280 &plusmn; 0.158</em></td>
+            </tr>
+
+            <tr class="model-row">
+                <td rowspan="2">Veo-3.1</td>
+                <td><b>0.435</b></td>
+                <td>0.471</td>
+                <td>0.266</td>
+                <td>0.672</td>
+                <td><b>0.320</b></td>
+                <td>0.463</td>
+                <td>0.000</td>
+                <td>0.115</td>
+                <td>0.343</td>
+            </tr>
+            <tr class="std-row">
+                <td><b><em>0.541 &plusmn; 0.405</em></b></td>
+                <td><em>0.592 &plusmn; 0.384</em></td>
+                <td><em>0.260 &plusmn; 0.427</em></td>
+                <td><em>0.649 &plusmn; 0.424</em></td>
+                <td><b><em>0.320 &plusmn; 0.466</em></b></td>
+                <td><em>0.463 &plusmn; 0.499</em></td>
+                <td><em>0.149 &plusmn; 0.235</em></td>
+                <td><em>0.527 &plusmn; 0.308</em></td>
+                <td><em>0.438 &plusmn; 0.165</em></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    </div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- VBENCH COMPARISON -->
+<!-- ===================================================== -->
+
+<section class="container" id="vbench-comparison">
+
+    <h2>Principia vs VBench</h2>
+
+    <p class="section-subtitle">
+
+        Visual quality and physical fidelity are largely decoupled.
+
+    </p>
+
+    <div class="vbench-layout">
+
+        <img
+            src="assets/figures/fig3a_vbench_scatter.png"
+            class="analysis-figure vbench-figure"
+            alt="Scatter plot comparing VBench visual quality score against Principia physical consistency score">
+
+        <p class="section-text vbench-text">
+
+            All five video generators score above 0.7 on VBench but below 0.5 on Principia,
+            clustering in the high-visual-quality, low-physics-fidelity region. VBench scores
+            aesthetic quality, motion smoothness, and temporal consistency&mdash;properties a
+            generator can satisfy while still violating Newtonian mechanics. A model can look
+            correct frame-to-frame while the underlying dynamics are wrong, which is precisely
+            the gap Principia is designed to expose.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- INTERACTIVE GENERATIONS -->
+<!-- ===================================================== -->
+
+<section id="generations" class="container">
+
+    <h2>Generated Videos</h2>
+
+    <p class="section-subtitle">
+
+        Select a physics scenario and an example scene to compare
+        generations across all five models.
+
+    </p>
+
+    <div class="gallery-panel">
+
+        <div class="gallery-panel-header">
+            <span class="gallery-panel-title">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                Result Gallery
+            </span>
+            <div class="speed-controls" id="gallery-speed-controls" aria-label="Playback speed">
+                <span class="speed-label">Speed</span>
+                <button class="speed-btn" data-speed="0.25">0.25×</button>
+                <button class="speed-btn" data-speed="0.5">0.5×</button>
+                <button class="speed-btn active" data-speed="1">1×</button>
+            </div>
+            <span class="gallery-panel-hint">Looping preview &middot; Click for detail</span>
+        </div>
+
+        <div class="scenario-buttons">
+
+            <button class="scenario-btn active" data-scenario="restitution">
+                Gravity &amp; Restitution
+            </button>
+
+            <button class="scenario-btn" data-scenario="friction">
+                Friction
+            </button>
+
+            <button class="scenario-btn" data-scenario="inertia">
+                Inertia
+            </button>
+
+            <button class="scenario-btn" data-scenario="projectile">
+                Projectile
+            </button>
+
+            <button class="scenario-btn" data-scenario="momentum">
+                Momentum
+            </button>
+
+            <button class="scenario-btn" data-scenario="pendulum">
+                Pendulum
+            </button>
+
+            <button class="scenario-btn" data-scenario="spring">
+                Spring
+            </button>
+
+        </div>
+
+        <div class="example-buttons" id="example-buttons">
+            <!-- populated by JS: Example 1 ... Example 5 -->
+        </div>
+
+        <div class="gallery-prompt">
+            <h4 class="gallery-prompt-heading">Generation Prompt</h4>
+            <p id="gallery-prompt-text"></p>
+        </div>
+
+        <div class="generation-grid" id="generation-grid">
+            <!-- populated by JS with 5 model video cards for the selected scenario + example -->
+        </div>
+
+        <div class="gallery-panel-footer">
+            <a href="assets/generations/" class="btn gallery-view-all-btn">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                Browse All Generations
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ===================================================== -->
+<!-- ANALYSIS: RESULTS -->
+<!-- ===================================================== -->
+
+<section class="container wide" id="analysis-results">
+
+    <h2>Per-Phenomenon Breakdown</h2>
+
+    <p class="section-subtitle">
+
+        Generators and vision-language models were tested on the same eight phenomena,
+        but they fail in almost opposite places&mdash;producing an inverse failure profile
+        across the two model classes.
+
+    </p>
+
+    <div class="breakdown-grid">
+
+        <figure class="breakdown-figure">
+            <img
+                src="assets/figures/fig3b_generators_spider.png"
+                class="analysis-figure"
+                alt="Per-phenomenon consistency spider chart for video generators">
+            <figcaption>
+                <h3>Video Generators</h3>
+                <p>
+                    Each polygon has a distinctive shape rather than uniform weakness:
+                    Veo-3.1 peaks at inertia and gravity; Wan2.2-14B reaches further on
+                    friction and pendulum; Cosmos-2.5-2B's polygon is small and concentrated
+                    on gravity and restitution. No polygon fills the chart.
+                </p>
+            </figcaption>
+        </figure>
+
+        <figure class="breakdown-figure">
+            <img
+                src="assets/figures/fig3c_vlms_spider.png"
+                class="analysis-figure"
+                alt="Per-phenomenon agreement spider chart for vision-language models">
+            <figcaption>
+                <h3>Vision-Language Models</h3>
+                <p>
+                    VLMs are tested on whether they can <em>detect</em> relational physics
+                    violations rather than generate physically correct motion. Polygons are
+                    smoother and more uniform than generator polygons: no VLM exceeds 0.5
+                    average, and all four share the same difficulty pattern&mdash;friction,
+                    inertia, and pendulum are systematically the hardest.
+                </p>
+            </figcaption>
+        </figure>
+
+    </div>
+
+    <div class="key-finding">
+        <span class="key-finding-tag">Key finding</span>
+        <p>
+            Generators and VLMs fail on <em>different</em> phenomena. On friction, inertia,
+            and pendulum, generators average <span class="number-highlight">0.41</span> while
+            VLMs average <span class="number-highlight">0.21</span>. On projectile and
+            mass&ndash;spring, the relationship inverts: generators average
+            <span class="number-highlight">0.16</span> while VLMs average
+            <span class="number-highlight">0.51</span>. The phenomena VLMs struggle with all
+            involve <em>temporal</em> comparisons (arrival times, periods); those they handle
+            well reduce to <em>spatial</em> comparisons of final positions. We conjecture that
+            current VLMs reason about static spatial outcomes more reliably than about temporal
+            dynamics, while generators preserve time-evolution structure but struggle with
+            paired-object spatial relations.
+        </p>
+    </div>
+
+    <!-- VLM TABLE -->
+    <div class="breakdown-table-wrap">
+        <h4>Vision-Language Models &mdash; Per-Phenomenon Scores</h4>
+        <p class="section-text" style="margin-top:0; margin-bottom:0;">
+            For each scene, the VLM receives the full video and a phenomenon-specific
+            PASS/FAIL prompt; responses are scored against Principia ground truth.
+        </p>
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Model</th>
+                    <th>Restitution</th>
+                    <th>Friction</th>
+                    <th>Inertia</th>
+                    <th>Momentum</th>
+                    <th>Projectile</th>
+                    <th>Pendulum</th>
+                    <th>Spring</th>
+                    <th>Avg</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Gemini-3.1-Pro</td>
+                    <td>0.66</td>
+                    <td>0.30</td>
+                    <td>0.18</td>
+                    <td>0.48</td>
+                    <td>0.48</td>
+                    <td>0.49</td>
+                    <td>0.64</td>
+                    <td><b>0.46</b></td>
+                </tr>
+
+                <tr>
+                    <td>Gemini-3-Flash</td>
+                    <td>0.34</td>
+                    <td>0.03</td>
+                    <td>0.21</td>
+                    <td>0.57</td>
+                    <td>0.42</td>
+                    <td>0.26</td>
+                    <td>0.55</td>
+                    <td>0.34</td>
+                </tr>
+
+                <tr>
+                    <td>Qwen-32B</td>
+                    <td>0.51</td>
+                    <td>0.37</td>
+                    <td>0.18</td>
+                    <td>0.48</td>
+                    <td>0.48</td>
+                    <td>0.16</td>
+                    <td>0.50</td>
+                    <td>0.38</td>
+                </tr>
+
+                <tr>
+                    <td>Qwen-4B</td>
+                    <td>0.24</td>
+                    <td>0.02</td>
+                    <td>0.21</td>
+                    <td>0.48</td>
+                    <td>0.56</td>
+                    <td>0.16</td>
+                    <td>0.48</td>
+                    <td>0.31</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- DATASET STATS -->
+<!-- ===================================================== -->
+
+<section class="container" id="dataset-stats">
+
+    <h2>Dataset Stats</h2>
+
+    <p class="section-subtitle">
+
+        A snapshot of the data and recording protocol behind every result on this page.
+
+    </p>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>8</h3>
+            <p class="stat-label">Physics Phenomena</p>
+            <p class="stat-desc">Gravity, friction, momentum &amp; more</p>
+        </div>
+        <div class="stat-card">
+            <h3>354</h3>
+            <p class="stat-label">Validated Real-World Scenes</p>
+            <p class="stat-desc">Manually checked recordings</p>
+        </div>
+        <div class="stat-card">
+            <h3>500+</h3>
+            <p class="stat-label">Videos Recorded</p>
+            <p class="stat-desc">Controlled real-world protocols</p>
+        </div>
+        <div class="stat-card">
+            <h3>3,500+</h3>
+            <p class="stat-label">Generated Videos Evaluated</p>
+            <p class="stat-desc">Across all benchmarked models</p>
+        </div>
+        <div class="stat-card">
+            <h3>9</h3>
+            <p class="stat-label">Models Evaluated</p>
+            <p class="stat-desc">5 generators + 4 VLMs</p>
+        </div>
+        <div class="stat-card">
+            <h3>2,000+</h3>
+            <p class="stat-label">A100 GPU Hours</p>
+            <p class="stat-desc">Generation &amp; evaluation compute</p>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- CITATION -->
+<!-- ===================================================== -->
+
+<section class="container" id="citation">
+    <h2>Citation</h2>
+    <p class="section-subtitle"> If you find Principia useful in your research, please consider citing our work. </p>
+    <div class="citation-block">
+        <button class="citation-copy-btn" id="citation-copy-btn" type="button" aria-label="Copy citation">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+        </button>
+        <pre id="citation-text">@InProceedings{Thozhiyoor_2026_CVPR,
+    author    = {Thozhiyoor, Varun Varma and Tripathi, Shivam and Radhakrishnan, Venkatesh Babu and Bhattad, Anand},
+    title     = {Objects in Generated Videos Are Slower Than They Appear: Models Suffer Sub-Earth Gravity and Don't Know Galileo's Principle...for now},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Findings},
+    month     = {June},
+    year      = {2026},
+    pages     = {3830--3839}
+}</pre>
+    </div>
+</section>
+
+<!-- ===================================================== -->
+<!-- FOOTER -->
+<!-- ===================================================== -->
+<footer>
+    <p> Principia &copy; 2026 &nbsp;&middot;&nbsp; Relational Physics Tests for Video Models </p>
+    <p class="footer-ack">
+        Website design inspired by <a href="https://thinking-in-boxes.github.io" target="_blank" rel="noopener">Thinking in Boxes</a>.
+    </p>
+</footer>
+
+<!-- ===================================================== -->
+<!-- SCRIPTS -->
+<!-- ===================================================== -->
+
+<script>
+// Render all KaTeX equations (both inline data-katex spans/paragraphs and the auto-render pass)
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-katex]').forEach(el => {
+        try {
+            katex.render(el.getAttribute('data-katex'), el, {
+                throwOnError: false,
+                displayMode: el.classList.contains('equation')
+            });
+        } catch (e) {
+            console.warn('KaTeX render failed for', el, e);
+        }
+    });
+});
+</script>
+
+<!-- ===================================================== -->
+<!-- PHYSICS SCENARIO CARDS + DETAIL MODAL -->
+<!-- ===================================================== -->
+
+<script>
+const SCENARIO_DEFS = [
+    {
+        key: 'gravity',
+        label: 'Gravity',
+        equation: '\\dfrac{h_1}{h_2} = \\left(\\dfrac{t_1}{t_2}\\right)^2',
+        info: 'Two spheres are dropped from different heights on identical drop rigs. Under uniform gravity, the ratio of fall heights equals the squared ratio of fall times, independent of mass. We measure both fall times directly from the recorded scene and compare against this relation.',
+        prompt: 'A video showing two identical balls being dropped from two different heights onto the ground. The camera is static and positioned to clearly capture the vertical motion of both balls. Both balls fall naturally under gravity, accelerating freely with no air resistance and hit the ground. The balls bounce a few times on the ground before coming to rest.',
+    },
+    {
+        key: 'restitution',
+        label: 'Restitution',
+        equation: '\\sqrt{r_1/h_1} = \\sqrt{r_2/h_2}',
+        info: 'Two balls of different material are dropped from different heights onto the same surface. The square root of the rebound-to-drop height ratio is a calibration-independent measure of the coefficient of restitution, which should match across both balls if the material property is correctly modeled.',
+        prompt: 'A video showing two identical balls being dropped from two different heights onto the ground. The camera is static and positioned to clearly capture the vertical motion of both balls. Both balls fall naturally under gravity, accelerating freely with no air resistance and hit the ground. The balls bounce a few times on the ground before coming to rest.',
+    },
+    {
+        key: 'friction',
+        label: 'Friction',
+        equation: 't_1 = t_2',
+        info: 'Two blocks of different mass slide down the same incline from the same height. Since the kinetic friction force and gravitational pull both scale linearly with mass, the deceleration is mass-independent, so both blocks should reach the bottom in the same elapsed time.',
+        prompt: 'A video showing two identical inclined planes with the same angle of inclination. Two blocks of the same material are placed on the inclines at the same height from the bottom. The blocks start from rest and slide down the planes. The camera is fixed and motion is strictly along the planes.',
+    },
+    {
+        key: 'inertia',
+        label: 'Rotational Inertia',
+        equation: '\\dfrac{t_1}{t_2} = \\sqrt{\\dfrac{1+I_1/mR^2}{1+I_2/mR^2}}',
+        info: 'A solid and a hollow cylinder of equal mass and radius roll down the same incline. Their rotational inertia differs, so their roll times differ by a fixed ratio determined entirely by their inertia coefficients, independent of incline angle or camera setup.',
+        prompt: 'A video showing two identical inclined planes with the same angle of inclination. A solid cylinder is placed on one plane and a hollow cylinder of the same mass and outer radius is placed on the other. Both cylinders start from rest at the same height and roll down their planes without slipping. The camera is fixed and the motion is strictly along the planes.',
+    },
+    {
+        key: 'projectile',
+        label: 'Projectile Motion',
+        equation: 'R \\propto v \\propto \\sqrt{h}',
+        info: 'A sphere is launched horizontally from two different ramp heights. Launch speed scales with the square root of release height, and horizontal range scales with launch speed, so the higher-launched sphere should consistently land farther down-range.',
+        prompt: 'A video showing two identical inclined planes with the same angle of inclination positioned on an elevated surface. Two identical balls are placed on the inclines. The balls start from rest, roll down the planes, and launch off the edge to the ground. The camera is fixed and captures the complete motion of the balls.',
+    },
+    {
+        key: 'momentum',
+        label: 'Momentum',
+        equation: 'x \\propto v \\propto h \\ \\text{,}\\ \\ x \\propto 1/m',
+        info: 'A launched sphere strikes a stationary block on a low-friction surface. Post-collision slide distance increases with launch height and decreases with block mass, reflecting momentum transfer; we check these monotonic relationships hold across paired trials.',
+        prompt: 'A video from a fixed camera showing a single wide inclined plane facing directly towards the camera. Two identical tennis balls are placed on the incline at different starting heights. Both balls start from rest and roll down the plane towards the camera without slipping. Two solid wooden square blocks of same masses are placed at the same height from the bottom, directly in the path of each ball. The balls collide head-on with their respective wooden blocks, causing them to move forward. The motion is strictly along the plane and the horizontal direction after the collision.',
+    },
+    {
+        key: 'pendulum',
+        label: 'Pendulum',
+        equation: '\\dfrac{T_1}{T_2} = \\sqrt{\\left(\\dfrac{l_1}{l_2}\\right)^2}',
+        info: 'Two pendulums of different length and bob mass are released from the same angular displacement. The period depends on string length alone, not mass, so the ratio of periods should match the ratio of lengths under the small-angle approximation.',
+        prompt: 'A video from a fixed camera showing two simple pendulums suspended from the same horizontal support. The pendulum bobs are identical in size, shape, and material, but are attached to strings of different lengths. Both pendulums are initially displaced to the same angular position and released simultaneously from rest without any initial push. The pendulums swing freely under gravity in a plane parallel to the camera. The camera is fixed and captures the complete oscillatory motion of both pendulums.',
+    },
+    {
+        key: 'spring',
+        label: 'Mass\u2013Spring',
+        equation: '\\dfrac{x_1}{x_2} = \\dfrac{m_1}{m_2}',
+        info: 'Two different masses are hung from identical springs. Static displacement is directly proportional to the suspended mass under Hooke\u2019s law, so the ratio of displacements should equal the ratio of masses regardless of the spring\u2019s absolute stiffness.',
+        prompt: 'A video from a fixed camera showing two vertical spring-mass systems suspended side-by-side from a fixed horizontal support. Both springs are entirely identical, having the same unstretched length and the same spring constant. Two wooden cube blocks having different masses are attached to the springs. Initially, both blocks are held elevated right up near the horizontal support, fully compressing the springs. At time zero, both blocks are released simultaneously from rest. The blocks fall under gravity, stretching the springs downwards, and then oscillate vertically about their respective equilibrium positions. The camera is fixed and clearly captures the continuous vertical motion of the system.',
+    },
+];
+
+const PORTRAIT_SCENARIOS = new Set(['gravity', 'restitution', 'spring']);
+
+// Display-level card list. Most cards map 1:1 to a SCENARIO_DEFS entry.
+// The gravity/restitution card merges two facets that share one recorded video.
+const SCENARIO_CARDS = [
+    { mediaKey: 'friction', orientation: 'landscape', facetKeys: ['friction'] },
+    { mediaKey: 'inertia', orientation: 'landscape', facetKeys: ['inertia'] },
+    { mediaKey: 'momentum', orientation: 'landscape', facetKeys: ['momentum'] },
+    { mediaKey: 'projectile', orientation: 'landscape', facetKeys: ['projectile'] },
+    { mediaKey: 'pendulum', orientation: 'landscape', facetKeys: ['pendulum'] },
+];
+
+const PORTRAIT_CARDS = [
+    { mediaKey: 'gravity', orientation: 'portrait', facetKeys: ['gravity', 'restitution'], mergedLabel: 'Gravity & Restitution' },
+    { mediaKey: 'spring', orientation: 'portrait', facetKeys: ['spring'] },
+];
+
+const scenarioCardsGrid = document.getElementById('scenario-cards');
+
+function defByKey(key) {
+    return SCENARIO_DEFS.find(s => s.key === key);
+}
+
+function renderScenarioCard(c) {
+    const facets = c.facetKeys.map(defByKey);
+    const displayLabel = c.mergedLabel || facets.map(f => f.label).join(' / ');
+    const orientationClass = c.orientation === 'portrait' ? ' is-portrait' : ' is-landscape';
+    const mergedClass = c.facetKeys.length > 1 ? ' is-merged' : '';
+
+    // For merged card: single footer button with the combined label
+    // For single facet: normal label + equation
+    const footer = c.facetKeys.length > 1
+        ? `<button class="scenario-card-facet scenario-card-facet-single" data-scenario-key="${c.facetKeys[0]}" data-all-facets="${c.facetKeys.join(',')}">
+               <span class="scenario-card-facet-label">${displayLabel}</span>
+           </button>`
+        : `<button class="scenario-card-facet" data-scenario-key="${facets[0].key}">
+               <span class="scenario-card-facet-label">${facets[0].label}</span>
+               <span class="katex-eq scenario-card-facet-eq" data-katex="${facets[0].equation}"></span>
+           </button>`;
+
+    return `
+    <div class="card scenario-card${orientationClass}${mergedClass}" data-media-key="${c.mediaKey}" data-all-facets="${c.facetKeys.join(',')}" aria-label="${displayLabel} scenario">
+        <button class="scenario-card-media" data-scenario-key="${c.facetKeys[0]}" data-all-facets="${c.facetKeys.join(',')}" aria-label="Open ${displayLabel} scenario detail">
+            <img class="scenario-card-poster" src="assets/figures/scenario-icons/${c.mediaKey}.png" alt="${displayLabel} scenario preview" loading="lazy">
+            <video class="scenario-card-video" muted loop playsinline preload="none" src="assets/scenarios/${c.mediaKey}.mp4"></video>
+            <span class="scenario-card-play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+        </button>
+        <div class="scenario-card-facets">
+            ${footer}
+        </div>
+    </div>
+    `;
+}
+
+// Row 1-2: landscape cards in pairs
+// Last row: Pendulum (col 1) + portrait group (col 2)
+const pendulumCard = SCENARIO_CARDS.find(c => c.mediaKey === 'pendulum');
+const landscapeWithoutPendulum = SCENARIO_CARDS.filter(c => c.mediaKey !== 'pendulum');
+
+scenarioCardsGrid.innerHTML = `
+    ${landscapeWithoutPendulum.map(renderScenarioCard).join('')}
+    ${renderScenarioCard(pendulumCard)}
+    <div class="scenario-portrait-stack">
+        ${PORTRAIT_CARDS.map(renderScenarioCard).join('')}
+    </div>
+`;
+
+// Render KaTeX for newly injected scenario card equations
+document.querySelectorAll('#scenario-cards [data-katex]').forEach(el => {
+    try {
+        katex.render(el.getAttribute('data-katex'), el, { throwOnError: false });
+    } catch (e) {
+        console.warn('KaTeX render failed for scenario card', el, e);
+    }
+});
+
+// Hover-to-play preview video on each scenario card (no overlay, just poster -> video)
+scenarioCardsGrid.querySelectorAll('.scenario-card').forEach(card => {
+    const video = card.querySelector('.scenario-card-video');
+    if (!video) return;
+
+    card.addEventListener('mouseenter', () => {
+        if (video.readyState === 0) video.load();
+        video.currentTime = 0;
+        video.play().catch(() => {});
+    });
+
+    card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+    });
+
+    card.addEventListener('focusin', () => {
+        if (video.readyState === 0) video.load();
+        video.play().catch(() => {});
+    });
+
+    card.addEventListener('focusout', (e) => {
+        if (card.contains(e.relatedTarget)) return;
+        video.pause();
+        video.currentTime = 0;
+    });
+});
+
+const scenarioModalOverlay = document.getElementById('scenario-modal-overlay');
+const scenarioModalTitle = document.getElementById('scenario-modal-title');
+const scenarioModalVideo = document.getElementById('scenario-modal-video');
+const scenarioModalImage = document.getElementById('scenario-modal-image');
+const scenarioModalText = document.getElementById('scenario-modal-text');
+const scenarioModalEq = document.getElementById('scenario-modal-eq');
+const scenarioModalClose = document.getElementById('scenario-modal-close');
+const scenarioModalTiles = document.getElementById('scenario-modal-tiles');
+
+function openScenarioModal(primaryKey, mediaKey, allFacetKeys) {
+    const keys = (allFacetKeys && allFacetKeys.length) ? allFacetKeys : [primaryKey];
+    const defs = keys.map(defByKey).filter(Boolean);
+    if (!defs.length) return;
+
+    const resolvedMediaKey = mediaKey || primaryKey;
+    const orientation = PORTRAIT_SCENARIOS.has(resolvedMediaKey) ? 'portrait' : 'landscape';
+    scenarioModalTiles.classList.toggle('is-portrait', orientation === 'portrait');
+    scenarioModalTiles.classList.toggle('is-landscape', orientation === 'landscape');
+
+    // Title: joined label
+    scenarioModalTitle.textContent = defs.map(d => d.label).join(' & ');
+
+    scenarioModalVideo.src = `assets/scenarios/${resolvedMediaKey}.mp4`;
+    scenarioModalVideo.loop = true;
+    scenarioModalImage.src = `assets/figures/scenario-icons/${resolvedMediaKey}.png`;
+    scenarioModalImage.alt = `${defs[0].label} stroboscope`;
+
+    // Info: each facet's text separated clearly
+    scenarioModalText.textContent = defs.length > 1
+        ? defs.map(d => `${d.label}: ${d.info}`).join('\n\n')
+        : defs[0].info;
+
+    // Equations: render each on its own line
+    scenarioModalEq.innerHTML = '';
+    defs.forEach((d, i) => {
+        if (i > 0) {
+            const sep = document.createElement('span');
+            sep.className = 'scenario-modal-eq-sep';
+            sep.textContent = '\u00a0\u00a0\u00b7\u00a0\u00a0';
+            scenarioModalEq.appendChild(sep);
+        }
+        const row = document.createElement('span');
+        row.className = 'scenario-modal-eq-item';
+        const label = document.createElement('span');
+        label.className = 'scenario-modal-eq-label';
+        label.textContent = d.label;
+        const eq = document.createElement('span');
+        eq.className = 'katex-eq';
+        try { katex.render(d.equation, eq, { throwOnError: false }); } catch(e) {}
+        row.appendChild(label);
+        row.appendChild(eq);
+        scenarioModalEq.appendChild(row);
+    });
+
+    scenarioModalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    scenarioModalClose.focus();
+
+    // Reset speed to 1x
+    document.querySelectorAll('#modal-speed-controls .speed-btn').forEach(b => b.classList.remove('active'));
+    const oneX = document.querySelector('#modal-speed-controls [data-speed="1"]');
+    if (oneX) oneX.classList.add('active');
+
+    scenarioModalVideo.playbackRate = 1;
+    scenarioModalVideo.play().catch(() => {});
+}
+
+function closeScenarioModal() {
+    scenarioModalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    scenarioModalVideo.pause();
+    scenarioModalVideo.removeAttribute('src');
+    scenarioModalVideo.load();
+}
+
+scenarioCardsGrid.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.scenario-card-facet, .scenario-card-media');
+    if (!trigger) return;
+    const card = trigger.closest('.scenario-card');
+    const allFacets = (trigger.dataset.allFacets || card?.dataset.allFacets || '').split(',').filter(Boolean);
+    const primaryKey = trigger.dataset.scenarioKey || allFacets[0];
+    openScenarioModal(primaryKey, card ? card.dataset.mediaKey : null, allFacets);
+});
+
+scenarioModalClose.addEventListener('click', closeScenarioModal);
+
+scenarioModalOverlay.addEventListener('click', (e) => {
+    if (e.target === scenarioModalOverlay) closeScenarioModal();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && scenarioModalOverlay.classList.contains('open')) {
+        closeScenarioModal();
+    }
+});
+</script>
+
+<!-- ===================================================== -->
+<!-- SCENARIO + EXAMPLE SWITCHER -->
+<!-- ===================================================== -->
+
+<script>
+const SCENARIO_MODELS = [
+    { key: 'veo',      label: 'Veo-3.1'         },
+    { key: 'wan5',     label: 'Wan2.2-5B'        },
+    { key: 'wan14',    label: 'Wan2.2-14B'       },
+    { key: 'cosmos2',  label: 'Cosmos-2.5-2B'    },
+    { key: 'cosmos14', label: 'Cosmos-2.5-14B'   },
+];
+
+const EXAMPLES_PER_SCENARIO = 5;
+
+// Optional per-generation pass/violation overrides, keyed "scenario/model/example".
+// Anything not listed here falls back to an "unclassified" neutral state.
+// Example: 'gravity/veo/1': { pass: false, note: 'Balls land at different times despite equal heights.' }
+const RESULT_OVERRIDES = {
+    // Gravity & Restitution (restitution folder)
+    'restitution/veo/1':     { pass: true,  note: 'Restitution coefficients match within tolerance.' },
+    'restitution/veo/2':     { pass: false, note: 'Ball on left rebounds higher than expected, violating equal-restitution invariant.' },
+    'restitution/wan14/1':   { pass: false, note: 'Significant asymmetry in rebound heights between the two balls.' },
+    'restitution/wan14/2':   { pass: true,  note: 'Both balls reach proportional heights consistent with the invariant.' },
+    'restitution/wan5/1':    { pass: false, note: 'Model fails to preserve the rebound ratio across both balls.' },
+    'restitution/wan5/2':    { pass: false, note: 'Rebound asymmetry exceeds 30% — clear violation.' },
+    'restitution/cosmos2/1': { pass: true,  note: 'Restitution ratio holds to within 8% — passes.' },
+    'restitution/cosmos2/2': { pass: false, note: 'Second ball barely bounces; ratio heavily violated.' },
+    'restitution/cosmos14/1':{ pass: false, note: 'Ball trajectories diverge substantially after first bounce.' },
+    'restitution/cosmos14/2':{ pass: true,  note: 'Symmetric bouncing behaviour preserved by the model.' },
+    // Friction
+    'friction/veo/1':        { pass: true,  note: 'Both blocks reach the bottom simultaneously — mass independence preserved.' },
+    'friction/veo/2':        { pass: false, note: 'Heavier block reaches bottom noticeably earlier, violating mass-independence.' },
+    'friction/wan14/1':      { pass: false, note: 'Blocks arrive at different times; timing ratio ~1.4×.' },
+    'friction/wan14/2':      { pass: true,  note: 'Arrival times differ by <5% — within noise tolerance.' },
+    'friction/wan5/1':       { pass: false, note: 'Lighter block visibly lags behind throughout the slide.' },
+    'friction/cosmos14/1':   { pass: true,  note: 'Model correctly reproduces mass-independent sliding.' },
+    // Momentum
+    'momentum/veo/1':        { pass: false, note: 'Post-collision displacement does not scale correctly with launch height.' },
+    'momentum/veo/2':        { pass: true,  note: 'Block displacement scales proportionally with ball launch height.' },
+    'momentum/wan14/1':      { pass: true,  note: 'Momentum transfer consistent with expected h ∝ x relationship.' },
+    'momentum/cosmos2/1':    { pass: false, note: 'Block barely moves after collision despite high launch — severe violation.' },
+    // Inertia
+    'inertia/veo/1':         { pass: true,  note: 'Hollow cylinder rolls slower than solid — inertia ratio preserved.' },
+    'inertia/veo/2':         { pass: false, note: 'Both cylinders reach the bottom at the same time — inertia difference ignored.' },
+    'inertia/wan14/1':       { pass: false, note: 'Roll times are equal; model does not distinguish hollow from solid.' },
+    'inertia/wan5/1':        { pass: false, note: 'Solid cylinder slower than hollow — physically inverted.' },
+    // Pendulum
+    'pendulum/veo/1':        { pass: true,  note: 'Period ratio matches length ratio to within 6%.' },
+    'pendulum/veo/2':        { pass: false, note: 'Both pendulums swing at nearly identical periods despite different lengths.' },
+    'pendulum/wan14/1':      { pass: false, note: 'Shorter pendulum oscillates slower — physically inverted.' },
+    'pendulum/cosmos14/1':   { pass: true,  note: 'Period scaling with length correctly reproduced.' },
+    // Spring
+    'spring/veo/1':          { pass: true,  note: 'Displacement ratio matches mass ratio within tolerance.' },
+    'spring/wan14/1':        { pass: false, note: 'Heavier mass stretches spring less than lighter one — inverted.' },
+    'spring/cosmos14/1':     { pass: false, note: 'Both springs extend by identical amounts regardless of mass.' },
+    // Projectile
+    'projectile/veo/1':      { pass: true,  note: 'Range scales correctly with √h as expected.' },
+    'projectile/veo/2':      { pass: false, note: 'Higher ramp produces shorter range — physically impossible.' },
+    'projectile/wan14/1':    { pass: false, note: 'Range difference between heights is negligible; model ignores kinetic energy.' },
+};
+
+const scenarioButtons = document.querySelectorAll('.scenario-btn');
+const exampleButtonsContainer = document.getElementById('example-buttons');
+const grid = document.getElementById('generation-grid');
+const galleryPromptText = document.getElementById('gallery-prompt-text');
+
+const generationModalOverlay = document.getElementById('generation-modal-overlay');
+const generationModalTitle = document.getElementById('generation-modal-title');
+const generationModalOg = document.getElementById('generation-modal-og');
+const generationModalInput = document.getElementById('generation-modal-input');
+const generationModalVideo = document.getElementById('generation-modal-video');
+const generationModalStroboscope = document.getElementById('generation-modal-stroboscope');
+const generationModalResult = document.getElementById('generation-modal-result');
+const generationModalResultText = document.getElementById('generation-modal-result-text');
+const generationModalClose = document.getElementById('generation-modal-close');
+
+let currentScenario = document.querySelector('.scenario-btn.active').dataset.scenario;
+let currentExample = 1;
+
+function modelByKey(key) {
+    return SCENARIO_MODELS.find(m => m.key === key);
+}
+
+function openGenerationModal(modelKey) {
+    const model = modelByKey(modelKey);
+    if (!model) return;
+
+    const basePath = `assets/generations/${currentScenario}/${modelKey}`;
+    const resultKey = `${currentScenario}/${modelKey}/${currentExample}`;
+    const result = RESULT_OVERRIDES[resultKey];
+
+    // Apply orientation to modal tiles
+    const genModalTiles = document.getElementById('generation-modal-tiles');
+    const isPortrait = PORTRAIT_SCENARIOS.has(currentScenario);
+    genModalTiles.classList.toggle('is-portrait', isPortrait);
+    genModalTiles.classList.toggle('is-landscape', !isPortrait);
+
+    generationModalTitle.textContent = `${model.label} \u00b7 Example ${currentExample}`;
+
+    const scenarioBase = `assets/generations/${currentScenario}`;
+    const inputSrc = `${scenarioBase}/input_frame${currentExample}.png`;
+
+    // Tile 1: Original ground-truth frame — og_frame{N}.png in the scenario folder
+    generationModalOg.src = `${scenarioBase}/og_frame${currentExample}.png`;
+    generationModalOg.alt = `Original frame ${currentExample}`;
+    // Fall back to input frame if og_frame not yet available
+    generationModalOg.onerror = () => { generationModalOg.src = inputSrc; generationModalOg.onerror = null; };
+
+    // Tile 2: Conditioned input frame fed to the model
+    generationModalInput.src = inputSrc;
+    generationModalInput.alt = `Conditioning frame ${currentExample}`;
+
+    // Tile 3: Generated video
+    generationModalVideo.src = `${basePath}/sample${currentExample}.mp4`;
+
+    // Tile 4: Stroboscope — fall back to input frame if missing
+    generationModalStroboscope.onerror = () => { generationModalStroboscope.src = inputSrc; generationModalStroboscope.onerror = null; };
+    generationModalStroboscope.src = `${basePath}/stroboscope${currentExample}.png`;
+    generationModalStroboscope.alt = `${model.label} stroboscope`;
+
+    generationModalResult.classList.remove('is-pass', 'is-violation', 'is-unclassified');
+    if (result === undefined) {
+        generationModalResult.classList.add('is-unclassified');
+        generationModalResultText.textContent = 'Result not yet classified.';
+    } else if (result.pass) {
+        generationModalResult.classList.add('is-pass');
+        generationModalResultText.textContent = result.note || 'Consistent with the physical invariant.';
+    } else {
+        generationModalResult.classList.add('is-violation');
+        generationModalResultText.textContent = result.note || 'Violates the physical invariant.';
+    }
+
+    generationModalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    generationModalClose.focus();
+
+    // Reset speed to 1x
+    document.querySelectorAll('#gen-modal-speed-controls .speed-btn').forEach(b => b.classList.remove('active'));
+    const genOneX = document.querySelector('#gen-modal-speed-controls [data-speed="1"]');
+    if (genOneX) genOneX.classList.add('active');
+    generationModalVideo.playbackRate = 1;
+    generationModalVideo.play().catch(() => {});
+}
+
+function closeGenerationModal() {
+    generationModalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    generationModalVideo.pause();
+    generationModalVideo.removeAttribute('src');
+    generationModalVideo.load();
+}
+
+generationModalClose.addEventListener('click', closeGenerationModal);
+
+generationModalOverlay.addEventListener('click', (e) => {
+    if (e.target === generationModalOverlay) closeGenerationModal();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && generationModalOverlay.classList.contains('open')) {
+        closeGenerationModal();
+    }
+});
+
+function renderPrompt() {
+    const def = defByKey(currentScenario);
+    galleryPromptText.textContent = def ? def.prompt : '';
+}
+
+function renderExampleButtons() {
+    exampleButtonsContainer.innerHTML = Array.from({ length: EXAMPLES_PER_SCENARIO }, (_, i) => {
+        const n = i + 1;
+        const active = n === currentExample ? ' active' : '';
+        return `<button class="example-btn${active}" data-example="${n}">Example ${n}</button>`;
+    }).join('');
+
+    exampleButtonsContainer.querySelectorAll('.example-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentExample = parseInt(btn.dataset.example, 10);
+            exampleButtonsContainer.querySelectorAll('.example-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderGrid();
+        });
+    });
+}
+
+function renderGrid() {
+    const isPortrait = PORTRAIT_SCENARIOS.has(currentScenario);
+    grid.classList.toggle('is-portrait', isPortrait);
+    grid.classList.toggle('is-landscape', !isPortrait);
+
+    const inputFrameCard = `
+        <div class="generation-card generation-card-input" data-model-key="" aria-label="Input frame">
+            <div class="generation-card-media">
+                <img src="assets/generations/${currentScenario}/input_frame${currentExample}.png" alt="Input frame">
+            </div>
+            <div class="generation-card-label">
+                <span class="model-name">Input Frame</span>
+            </div>
+        </div>
+    `;
+
+    const modelCards = SCENARIO_MODELS.map(m => {
+        const rKey = `${currentScenario}/${m.key}/${currentExample}`;
+        const r = RESULT_OVERRIDES[rKey];
+        let badge = '';
+        if (r !== undefined) {
+            const cls = r.pass ? 'result-badge-pass' : 'result-badge-fail';
+            const txt = r.pass ? 'Pass' : 'Fail';
+            badge = `<span class="result-badge ${cls}">${txt}</span>`;
+        }
+        return `
+        <div class="generation-card" data-model-key="${m.key}" tabindex="0" role="button" aria-label="View ${m.label} generation detail">
+            <div class="generation-card-media">
+                <video class="generation-card-video" autoplay muted loop playsinline preload="metadata" poster="assets/generations/${currentScenario}/${m.key}/poster${currentExample}.jpg">
+                    <source src="assets/generations/${currentScenario}/${m.key}/sample${currentExample}.mp4">
+                </video>
+            </div>
+            <div class="generation-card-label">
+                <span class="model-name">${m.label}</span>
+                ${badge}
+            </div>
+        </div>
+        `;
+    }).join('');
+
+    grid.innerHTML = inputFrameCard + modelCards;
+
+    grid.querySelectorAll('.generation-card:not(.generation-card-input)').forEach(card => {
+        card.addEventListener('click', () => openGenerationModal(card.dataset.modelKey));
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGenerationModal(card.dataset.modelKey);
+            }
+        });
+    });
+
+    // Input frame card: static display only
+    const inputCard = grid.querySelector('.generation-card-input');
+    if (inputCard) {
+        inputCard.style.cursor = 'default';
+    }
+}
+
+scenarioButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        scenarioButtons.forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        currentScenario = button.dataset.scenario;
+        currentExample = 1;
+        renderExampleButtons();
+        renderPrompt();
+        renderGrid();
+    });
+});
+
+// initial render
+renderExampleButtons();
+renderPrompt();
+renderGrid();
+
+// ── Speed controls ────────────────────────────────────────
+function initSpeedControls(controlsId, getVideos) {
+    const controls = document.getElementById(controlsId);
+    if (!controls) return;
+    controls.querySelectorAll('.speed-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            controls.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const rate = parseFloat(btn.dataset.speed);
+            getVideos().forEach(v => { v.playbackRate = rate; });
+        });
+    });
+}
+
+// Scenario cards speed — apply to whichever videos are currently playing
+initSpeedControls('scenario-speed-controls', () =>
+    [...document.querySelectorAll('.scenario-card-video')]
+);
+
+// Modal video speed
+initSpeedControls('modal-speed-controls', () => {
+    const v = document.getElementById('scenario-modal-video');
+    return v ? [v] : [];
+});
+
+initSpeedControls('gen-modal-speed-controls', () => {
+    const v = document.getElementById('generation-modal-video');
+    return v ? [v] : [];
+});
+
+// Gallery grid speed — re-apply when grid re-renders
+function getGalleryVideos() {
+    return [...document.querySelectorAll('.generation-card-video')];
+}
+initSpeedControls('gallery-speed-controls', getGalleryVideos);
+
+// Patch renderGrid so speed carries over after scenario/example switch
+const _origRenderGrid = renderGrid;
+renderGrid = function() {
+    _origRenderGrid();
+    const activeGallerySpeed = document.querySelector('#gallery-speed-controls .speed-btn.active');
+    if (activeGallerySpeed) {
+        const rate = parseFloat(activeGallerySpeed.dataset.speed);
+        getGalleryVideos().forEach(v => { v.playbackRate = rate; });
+    }
+};
+</script>
+
+<!-- ===================================================== -->
+<!-- SIDE NAVIGATION FUNCTIONALITY -->
+<!-- ===================================================== -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.top-nav a');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // Handle nav link clicks
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            
+            const sectionId = link.getAttribute('href').slice(1);
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+    
+    // Update active nav link on scroll
+    window.addEventListener('scroll', () => {
+        let currentSection = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === currentSection) {
+                link.classList.add('active');
+            }
+        });
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const storageKey = 'principia-theme';
+
+    function setTheme(theme) {
+        if (theme === 'light') {
+            document.body.dataset.theme = 'light';
+            themeToggle.setAttribute('aria-pressed', 'true');
+        } else {
+            delete document.body.dataset.theme;
+            themeToggle.setAttribute('aria-pressed', 'false');
+        }
+        localStorage.setItem(storageKey, theme);
+    }
+
+    const savedTheme = localStorage.getItem(storageKey);
+    if (savedTheme === 'light') {
+        setTheme(savedTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const nextTheme = document.body.dataset.theme === 'light' ? 'dark' : 'light';
+        setTheme(nextTheme);
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const copyBtn = document.getElementById('citation-copy-btn');
+    const citationText = document.getElementById('citation-text');
+    if (!copyBtn || !citationText) return;
+
+    copyBtn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(citationText.textContent.trim());
+        } catch (e) {
+            const range = document.createRange();
+            range.selectNode(citationText);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+        }
+
+        const label = copyBtn.querySelector('span');
+        const originalLabel = label.textContent;
+        copyBtn.classList.add('copied');
+        label.textContent = 'Copied';
+
+        setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            label.textContent = originalLabel;
+        }, 1800);
+    });
+});
+</script>
+
+<!-- ===================================================== -->
+<!-- IMAGE LIGHTBOX -->
+<!-- ===================================================== -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const ZOOMABLE_SELECTOR = '.full-image, .motivation-img-full, .analysis-figure';
+
+    const lightboxOverlay = document.getElementById('lightbox-overlay');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    document.querySelectorAll(ZOOMABLE_SELECTOR).forEach(img => {
+        img.classList.add('zoomable-img');
+        img.addEventListener('click', () => openLightbox(img));
+    });
+
+    function openLightbox(img) {
+        lightboxImage.src = img.currentSrc || img.src;
+        lightboxImage.alt = img.alt || '';
+        lightboxOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightboxOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+        lightboxImage.src = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightboxOverlay.addEventListener('click', (e) => {
+        if (e.target === lightboxOverlay) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightboxOverlay.classList.contains('open')) {
+            closeLightbox();
+        }
+    });
+});
+</script>
+
+</body>
+</html>
