@@ -378,8 +378,8 @@
 <!-- RESULTS -->
 <!-- ===================================================== -->
 
-<section id="results" class="container">
 
+<section id="results" class="container">
 
     <h2>Benchmark Results</h2>
 
@@ -391,12 +391,9 @@
 
     <p class="section-text" style="margin-top:0;">
 
-        For each physical phenomenon, we report a binary pass rate (top row)
-        and a continuous relational consistency score (bottom row).
-        The binary pass rate measures the fraction of samples for which <span data-katex="S_\phi \geq \tau">S&#9737; &ge; &tau;</span>, 
-        where <span data-katex="\tau = 0.8">&tau; = 0.8</span>.
+        For each physical phenomenon, we report a continuous relational consistency score.
         Higher values indicate better adherence to the underlying
-        physical invariant. <b class="table-bold-note">Bold</b> indicates the best-performing model for each metric and phenomenon.
+        physical invariant. <b class="table-bold-note">Bold</b> indicates the best-performing model for each phenomenon.
 
     </p>
 
@@ -404,9 +401,7 @@
     <table class="results-table">
 
         <thead>
-
             <tr>
-
                 <th>Model</th>
                 <th>Restitution</th>
                 <th>Gravity</th>
@@ -417,131 +412,87 @@
                 <th>Spring</th>
                 <th>Pendulum</th>
                 <th>Avg</th>
-
             </tr>
-
         </thead>
 
         <tbody>
 
             <tr class="model-row">
-                <td rowspan="2">Wan2.2-5B</td>
-                <td>0.109</td>
-                <td>0.246</td>
-                <td>0.351</td>
-                <td>0.545</td>
-                <td>0.010</td>
-                <td><b>0.529</b></td>
-                <td>0.048</td>
-                <td>0.177</td>
-                <td>0.252</td>
-            </tr>
-            <tr class="std-row">
-                <td><em>0.190 &plusmn; 0.327</em></td>
-                <td><em>0.347 &plusmn; 0.415</em></td>
-                <td><em>0.347 &plusmn; 0.455</em></td>
-                <td><em>0.517 &plusmn; 0.457</em></td>
-                <td><em>0.010 &plusmn; 0.099</em></td>
-                <td><b><em>0.529 &plusmn; 0.499</em></b></td>
-                <td><em>0.164 &plusmn; 0.277</em></td>
-                <td><em>0.413 &plusmn; 0.363</em></td>
-                <td><em>0.315 &plusmn; 0.169</em></td>
+                <td>Wan2.2-5B</td>
+                <td><em>0.158 &plusmn; 0.311</em></td>
+                <td><em>0.220 &plusmn; 0.356</em></td>
+                <td><em>0.307 &plusmn; 0.439</em></td>
+                <td><em>0.470 &plusmn; 0.456</em></td>
+                <td><em>0.009 &plusmn; 0.096</em></td>
+                <td><em>0.045 &plusmn; 0.208</em></td>
+                <td><em>0.065 &plusmn; 0.176</em></td>
+                <td><em>0.346 &plusmn; 0.380</em></td>
+                <td><em>0.2026 &plusmn; 0.1525</em></td>
             </tr>
 
             <tr class="model-row">
-                <td rowspan="2">Wan2.2-14B</td>
-                <td>0.188</td>
-                <td><b>0.558</b></td>
-                <td><b>0.633</b></td>
-                <td><b>0.776</b></td>
-                <td>0.227</td>
-                <td>0.250</td>
-                <td>0.056</td>
-                <td><b>0.315</b></td>
-                <td><b>0.375</b></td>
-            </tr>
-            <tr class="std-row">
-                <td><em>0.250 &plusmn; 0.388</em></td>
-                <td><b><em>0.674 &plusmn; 0.372</em></b></td>
-                <td><b><em>0.635 &plusmn; 0.428</em></b></td>
-                <td><b><em>0.760 &plusmn; 0.326</em></b></td>
-                <td><em>0.227 &plusmn; 0.419</em></td>
-                <td><em>0.250 &plusmn; 0.433</em></td>
-                <td><em>0.217 &plusmn; 0.297</em></td>
-                <td><b><em>0.594 &plusmn; 0.329</em></b></td>
-                <td><b><em>0.451 &plusmn; 0.220</em></b></td>
+                <td>Wan2.2-14B</td>
+                <td><b><em>0.504 &plusmn; 0.407</em></b></td>
+                <td><b><em>0.540 &plusmn; 0.396</em></b></td>
+                <td><em>0.709 &plusmn; 0.395</em></td>
+                <td><em>0.729 &plusmn; 0.349</em></td>
+                <td><em>0.231 &plusmn; 0.422</em></td>
+                <td><em>0.021 &plusmn; 0.144</em></td>
+                <td><em>0.099 &plusmn; 0.203</em></td>
+                <td><em>0.519 &plusmn; 0.368</em></td>
+                <td><b><em>0.4192 &plusmn; 0.2520</em></b></td>
             </tr>
 
             <tr class="model-row">
-                <td rowspan="2">Cosmos-2.5-2B</td>
-                <td><b>0.336</b></td>
-                <td>0.545</td>
-                <td>0.069</td>
-                <td>0.045</td>
-                <td>0.000</td>
-                <td>0.309</td>
-                <td><b>0.087</b></td>
-                <td>0.069</td>
-                <td>0.183</td>
-            </tr>
-            <tr class="std-row">
-                <td><b><em>0.482 &plusmn; 0.401</em></b></td>
-                <td><em>0.620 &plusmn; 0.402</em></td>
-                <td><em>0.083 &plusmn; 0.264</em></td>
-                <td><em>0.059 &plusmn; 0.212</em></td>
+                <td>Cosmos-2.5-2B</td>
+                <td><em>0.272 &plusmn; 0.375</em></td>
+                <td><em>0.378 &plusmn; 0.420</em></td>
+                <td><em>0.078 &plusmn; 0.261</em></td>
+                <td><em>0.044 &plusmn; 0.192</em></td>
                 <td><em>0.000 &plusmn; 0.000</em></td>
-                <td><em>0.309 &plusmn; 0.462</em></td>
-                <td><b><em>0.279 &plusmn; 0.300</em></b></td>
-                <td><em>0.265 &plusmn; 0.317</em></td>
-                <td><em>0.262 &plusmn; 0.200</em></td>
+                <td><b><em>0.077 &plusmn; 0.266</em></b></td>
+                <td><em>0.130 &plusmn; 0.217</em></td>
+                <td><em>0.205 &plusmn; 0.313</em></td>
+                <td><em>0.1480 &plusmn; 0.1198</em></td>
             </tr>
 
             <tr class="model-row">
-                <td rowspan="2">Cosmos-2.5-14B</td>
-                <td>0.196</td>
-                <td>0.290</td>
-                <td>0.362</td>
-                <td>0.081</td>
-                <td>0.030</td>
-                <td>0.279</td>
-                <td>0.038</td>
-                <td>0.242</td>
-                <td>0.190</td>
-            </tr>
-            <tr class="std-row">
-                <td><em>0.241 &plusmn; 0.382</em></td>
-                <td><em>0.407 &plusmn; 0.417</em></td>
-                <td><em>0.373 &plusmn; 0.449</em></td>
-                <td><em>0.098 &plusmn; 0.279</em></td>
-                <td><em>0.030 &plusmn; 0.171</em></td>
-                <td><em>0.279 &plusmn; 0.449</em></td>
-                <td><em>0.258 &plusmn; 0.273</em></td>
-                <td><em>0.556 &plusmn; 0.322</em></td>
-                <td><em>0.280 &plusmn; 0.158</em></td>
+                <td>Cosmos-2.5-14B</td>
+                <td><em>0.179 &plusmn; 0.342</em></td>
+                <td><em>0.365 &plusmn; 0.404</em></td>
+                <td><em>0.319 &plusmn; 0.436</em></td>
+                <td><em>0.171 &plusmn; 0.358</em></td>
+                <td><em>0.019 &plusmn; 0.135</em></td>
+                <td><em>0.015 &plusmn; 0.122</em></td>
+                <td><em>0.147 &plusmn; 0.222</em></td>
+                <td><em>0.380 &plusmn; 0.383</em></td>
+                <td><em>0.1993 &plusmn; 0.1346</em></td>
             </tr>
 
             <tr class="model-row">
-                <td rowspan="2">Veo-3.1</td>
-                <td><b>0.435</b></td>
-                <td>0.471</td>
-                <td>0.266</td>
-                <td>0.672</td>
-                <td><b>0.320</b></td>
-                <td>0.463</td>
-                <td>0.000</td>
-                <td>0.115</td>
-                <td>0.343</td>
+                <td>Veo-3.1</td>
+                <td><em>0.479 &plusmn; 0.417</em></td>
+                <td><em>0.524 &plusmn; 0.428</em></td>
+                <td><em>0.387 &plusmn; 0.477</em></td>
+                <td><em>0.669 &plusmn; 0.418</em></td>
+                <td><b><em>0.250 &plusmn; 0.433</em></b></td>
+                <td><em>0.000 &plusmn; 0.000</em></td>
+                <td><b><em>0.381 &plusmn; 0.205</em></b></td>
+                <td><em>0.343 &plusmn; 0.352</em></td>
+                <td><em>0.3791 &plusmn; 0.1859</em></td>
             </tr>
-            <tr class="std-row">
-                <td><b><em>0.541 &plusmn; 0.405</em></b></td>
-                <td><em>0.592 &plusmn; 0.384</em></td>
-                <td><em>0.260 &plusmn; 0.427</em></td>
-                <td><em>0.649 &plusmn; 0.424</em></td>
-                <td><b><em>0.320 &plusmn; 0.466</em></b></td>
-                <td><em>0.463 &plusmn; 0.499</em></td>
-                <td><em>0.149 &plusmn; 0.235</em></td>
-                <td><em>0.527 &plusmn; 0.308</em></td>
-                <td><em>0.438 &plusmn; 0.165</em></td>
+
+            <tr class="model-row">
+                <td>Omni</td>
+                <td><em>0.277 &plusmn; 0.411</em></td>
+                <td><em>0.295 &plusmn; 0.401</em></td>
+                <td><b><em>0.852 &plusmn; 0.327</em></b></td>
+                <td><b><em>0.784 &plusmn; 0.332</em></b></td>
+                <td><em>0.148 &plusmn; 0.355</em></td>
+                <td><em>0.075 &plusmn; 0.263</em></td>
+                <td><em>0.308 &plusmn; 0.247</em></td>
+                <td><b><em>0.554 &plusmn; 0.323</em></b></td>
+                <td><em>0.4116 &plusmn; 0.2689</em></td>
             </tr>
 
         </tbody>
@@ -550,6 +501,8 @@
     </div>
 
 </section>
+
+
 
 
 <!-- ===================================================== -->
@@ -569,7 +522,7 @@
     <div class="vbench-layout">
 
         <img
-            src="assets/figures/fig3a_vbench_scatter.png"
+            src="assets/figures/vbench_vs_principia_arxiv.png"
             class="analysis-figure vbench-figure"
             alt="Scatter plot comparing VBench visual quality score against Principia physical consistency score">
 
@@ -697,7 +650,7 @@
 
         <figure class="breakdown-figure">
             <img
-                src="assets/figures/fig3b_generators_spider.png"
+                src="assets/figures/invariance_radar_plot_arxiv.png"
                 class="analysis-figure"
                 alt="Per-phenomenon consistency spider chart for video generators">
             <figcaption>
@@ -713,7 +666,7 @@
 
         <figure class="breakdown-figure">
             <img
-                src="assets/figures/fig3c_vlms_spider.png"
+                src="assets/figures/VLM_radar_real_synth.png"
                 class="analysis-figure"
                 alt="Per-phenomenon agreement spider chart for vision-language models">
             <figcaption>
@@ -721,7 +674,7 @@
                 <p>
                     VLMs are tested on whether they can <em>detect</em> relational physics
                     violations rather than generate physically correct motion. Polygons are
-                    smoother and more uniform than generator polygons: no VLM exceeds 0.5
+                    smoother and more uniform than generator polygons: no VLM exceeds 0.7
                     average, and all four share the same difficulty pattern&mdash;friction,
                     inertia, and pendulum are systematically the hardest.
                 </p>
@@ -730,7 +683,7 @@
 
     </div>
 
-    <div class="key-finding">
+    <!-- <div class="key-finding">
         <span class="key-finding-tag">Key finding</span>
         <p>
             Generators and VLMs fail on <em>different</em> phenomena. On friction, inertia,
@@ -745,87 +698,90 @@
             dynamics, while generators preserve time-evolution structure but struggle with
             paired-object spatial relations.
         </p>
-    </div>
+    </div> -->
 
     <!-- VLM TABLE -->
     <div class="breakdown-table-wrap">
-        <h4>Vision-Language Models &mdash; Per-Phenomenon Scores</h4>
-        <p class="section-text" style="margin-top:0; margin-bottom:0;">
-            For each scene, the VLM receives the full video and a phenomenon-specific
-            PASS/FAIL prompt; responses are scored against Principia ground truth.
-        </p>
-        <table>
+    <h4>Vision-Language Models &mdash; Per-Phenomenon Scores</h4>
+    <p class="section-text" style="margin-top:0; margin-bottom:0;">
+        For each scene, the VLM receives the full video and a phenomenon-specific
+        PASS/FAIL prompt; responses are scored against Principia ground truth.
+    </p>
+    <table>
 
-            <thead>
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Restitution</th>
+                <th>Gravity</th>
+                <th>Friction</th>
+                <th>Inertia</th>
+                <th>Projectile</th>
+                <th>Momentum</th>
+                <th>Spring</th>
+                <th>Pendulum</th>
+                <th>Avg</th>
+            </tr>
+        </thead>
 
-                <tr>
-                    <th>Model</th>
-                    <th>Restitution</th>
-                    <th>Friction</th>
-                    <th>Inertia</th>
-                    <th>Momentum</th>
-                    <th>Projectile</th>
-                    <th>Pendulum</th>
-                    <th>Spring</th>
-                    <th>Avg</th>
-                </tr>
+        <tbody>
 
-            </thead>
+            <tr>
+                <td>Gemini-3.1-Pro</td>
+                <td>0.439</td>
+                <td>0.489</td>
+                <td>0.498</td>
+                <td><b>0.517</b></td>
+                <td>0.517</td>
+                <td>0.536</td>
+                <td>0.843</td>
+                <td>0.519</td>
+                <td>0.545</td>
+            </tr>
 
-            <tbody>
+            <tr>
+                <td>Gemini-3-Flash</td>
+                <td><b>0.594</b></td>
+                <td><b>0.644</b></td>
+                <td><b>0.840</b></td>
+                <td>0.465</td>
+                <td><b>0.665</b></td>
+                <td><b>0.556</b></td>
+                <td><b>0.895</b></td>
+                <td><b>0.626</b></td>
+                <td><b>0.661</b></td>
+            </tr>
 
-                <tr>
-                    <td>Gemini-3.1-Pro</td>
-                    <td>0.66</td>
-                    <td>0.30</td>
-                    <td>0.18</td>
-                    <td>0.48</td>
-                    <td>0.48</td>
-                    <td>0.49</td>
-                    <td>0.64</td>
-                    <td><b>0.46</b></td>
-                </tr>
+            <tr>
+                <td>Qwen-32B</td>
+                <td>0.460</td>
+                <td>0.553</td>
+                <td>0.467</td>
+                <td>0.427</td>
+                <td>0.517</td>
+                <td>0.411</td>
+                <td>0.587</td>
+                <td>0.579</td>
+                <td>0.500</td>
+            </tr>
 
-                <tr>
-                    <td>Gemini-3-Flash</td>
-                    <td>0.34</td>
-                    <td>0.03</td>
-                    <td>0.21</td>
-                    <td>0.57</td>
-                    <td>0.42</td>
-                    <td>0.26</td>
-                    <td>0.55</td>
-                    <td>0.34</td>
-                </tr>
+            <tr>
+                <td>Qwen-4B</td>
+                <td>0.588</td>
+                <td>0.580</td>
+                <td>0.642</td>
+                <td>0.427</td>
+                <td>0.547</td>
+                <td>0.450</td>
+                <td>0.535</td>
+                <td>0.557</td>
+                <td>0.541</td>
+            </tr>
 
-                <tr>
-                    <td>Qwen-32B</td>
-                    <td>0.51</td>
-                    <td>0.37</td>
-                    <td>0.18</td>
-                    <td>0.48</td>
-                    <td>0.48</td>
-                    <td>0.16</td>
-                    <td>0.50</td>
-                    <td>0.38</td>
-                </tr>
+        </tbody>
 
-                <tr>
-                    <td>Qwen-4B</td>
-                    <td>0.24</td>
-                    <td>0.02</td>
-                    <td>0.21</td>
-                    <td>0.48</td>
-                    <td>0.56</td>
-                    <td>0.16</td>
-                    <td>0.48</td>
-                    <td>0.31</td>
-                </tr>
-
-            </tbody>
-
-        </table>
-    </div>
+    </table>
+</div>
 
 </section>
 
@@ -1212,7 +1168,7 @@ const SCENARIO_MODELS = [
     { key: 'cosmos14', label: 'Cosmos-2.5-14B'   },
 ];
 
-const EXAMPLES_PER_SCENARIO = 5;
+const EXAMPLES_PER_SCENARIO = 2;
 
 // Optional per-generation pass/violation overrides, keyed "scenario/model/example".
 // Anything not listed here falls back to an "unclassified" neutral state.

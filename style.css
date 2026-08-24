@@ -1339,6 +1339,11 @@ tr:nth-child(even){ background:rgba(255,255,255,0.02); }
     font-family:var(--font-mono);
 }
 
+.breakdown-table-wrap table b {
+    color: #2E5F8A;
+    font-weight: 700;
+}
+
 
 
 /* ===================================================== */
