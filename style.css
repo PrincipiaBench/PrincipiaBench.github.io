@@ -408,6 +408,55 @@ body[data-theme="light"] .theme-icon-moon{ display:block; }
     color:var(--text-soft);
 }
 
+.analysis-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:28px;
+    margin-top:32px;
+}
+
+.analysis-card{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    min-height:100%;
+    padding:28px 28px 30px;
+    background:linear-gradient(180deg, var(--tile-1) 0%, var(--tile-2) 100%);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    box-shadow:0 14px 30px rgba(0,0,0,0.18);
+}
+
+.analysis-card h3{
+    margin:0;
+    font-family:var(--font-display);
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--text);
+}
+
+.analysis-card .section-text{
+    margin:0;
+}
+
+.analysis-card .equation-box{
+    margin:8px 0 4px;
+}
+
+.analysis-card .analysis-figure{
+    width:100%;
+    max-width:100%;
+    margin:0;
+    box-shadow:none;
+}
+
+@media(max-width:900px){
+    .analysis-grid{
+        grid-template-columns:1fr;
+    }
+}
+
 
 
 /* ===================================================== */

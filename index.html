@@ -29,10 +29,8 @@
         <li><a href="#abstract" data-section="abstract">Abstract</a></li>
         <li><a href="#motivation" data-section="motivation">Motivation</a></li>
         <li><a href="#scenarios" data-section="scenarios">Scenarios</a></li>
-        <li><a href="#invariance" data-section="invariance">Metric</a></li>
-        <li><a href="#results" data-section="results">Results</a></li>
+        <li><a href="#analysis-results" data-section="results">Results</a></li>
         <li><a href="#generations" data-section="generations">Gallery</a></li>
-        <li><a href="#analysis-results" data-section="analysis-results">Analysis</a></li>
         <li><a href="#citation" data-section="citation">Citation</a></li>
     </ul>
 </nav>
@@ -338,7 +336,7 @@
 <!-- INVARIANCE SCORE -->
 <!-- ===================================================== -->
 
-<section class="container" id="invariance">
+<!-- <section class="container" id="invariance">
 
     <h2>Relational Physics Consistency Score</h2>
 
@@ -370,7 +368,7 @@
 
     </p>
 
-</section>
+</section> -->
 
 
 
@@ -379,7 +377,7 @@
 <!-- ===================================================== -->
 
 
-<section id="results" class="container">
+<!-- <section id="results" class="container">
 
     <h2>Benchmark Results</h2>
 
@@ -500,46 +498,154 @@
     </table>
     </div>
 
-</section>
-
+</section> -->
 
 
 
 <!-- ===================================================== -->
-<!-- VBENCH COMPARISON -->
+<!-- PHYSICAL CONSISTENCY ANALYSIS -->
 <!-- ===================================================== -->
 
-<section class="container" id="vbench-comparison">
+<!-- ===================================================== -->
+<!-- RELATIONAL PHYSICS CONSISTENCY + VBENCH -->
+<!-- ===================================================== -->
 
-    <h2>Principia vs VBench</h2>
+<section class="container wide" id="analysis-results">
+
+    <h2>Physical Consistency Analysis</h2>
 
     <p class="section-subtitle">
-
-        Visual quality and physical fidelity are largely decoupled.
-
+        We evaluate both the ability of video generators to <em>produce</em> physically
+        consistent motion and the ability of vision-language models to <em>detect</em>
+        violations of relational physics.
     </p>
 
-    <div class="vbench-layout">
+    <div class="analysis-grid">
 
-        <img
-            src="assets/figures/vbench_vs_principia_arxiv.png"
-            class="analysis-figure vbench-figure"
-            alt="Scatter plot comparing VBench visual quality score against Principia physical consistency score">
+        <!-- ================================================= -->
+        <!-- TOP LEFT: RELATIONAL PHYSICS CONSISTENCY -->
+        <!-- ================================================= -->
 
-        <p class="section-text vbench-text">
+        <div class="analysis-card">
 
-            All five video generators score above 0.7 on VBench but below 0.5 on Principia,
-            clustering in the high-visual-quality, low-physics-fidelity region. VBench scores
-            aesthetic quality, motion smoothness, and temporal consistency&mdash;properties a
-            generator can satisfy while still violating Newtonian mechanics. A model can look
-            correct frame-to-frame while the underlying dynamics are wrong, which is precisely
-            the gap Principia is designed to expose.
+            <h3>Relational Physics Consistency</h3>
 
-        </p>
+            <p class="section-text">
+
+                For each phenomenon <span data-katex="\phi">&phi;</span>, the invariant defines
+                two scalar quantities <span data-katex="F_\phi(o_1)">F&#9737;(o&#8321;)</span> and
+                <span data-katex="F_\phi(o_2)">F&#9737;(o&#8322;)</span> that should be equal under
+                correct physics. Depending on the phenomenon, these quantities may correspond
+                either to directly measured values (friction) or to ratios derived from the
+                measured values (gravity, spring, restitution, rotational inertia, pendulum).
+
+            </p>
+
+            <div class="equation-box">
+
+                <div class="equation katex-eq"
+                     data-katex="S_\phi \;=\; 1 \;-\; \dfrac{\left|F_\phi(o_1) - F_\phi(o_2)\right|}{\left|F_\phi(o_1)\right| + \left|F_\phi(o_2)\right|}">
+                </div>
+
+            </div>
+
+            <p class="section-text">
+
+                <span data-katex="S_\phi">S&#9737;</span> equals 1 when the invariant holds
+                exactly and decreases toward 0 as the violation grows. A score of
+                <span data-katex="S_\phi = 0.95">S&#9737; = 0.9</span> corresponds to roughly
+                10% relational asymmetry. The normalization makes
+                <span data-katex="S_\phi">S&#9737;</span> unit-free and bounded in [0, 1].
+
+            </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- TOP RIGHT: PRINCIPIA VS VBENCH -->
+        <!-- ================================================= -->
+
+        <div class="analysis-card">
+
+            <h3>Principia vs. VBench</h3>
+
+
+            <img
+                src="assets/figures/vbench_vs_principia_arxiv.png"
+                class="analysis-figure vbench-figure"
+                alt="Scatter plot comparing VBench visual quality score against Principia physical consistency score">
+
+            <p class="section-text">
+Visual quality and physical fidelity are largely decoupled. All five video
+                generators score above 0.7 on VBench but below 0.5 on Principia, clustering
+                in the high-visual-quality, low-physics-fidelity region.
+                
+            </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- BOTTOM LEFT: VIDEO GENERATORS -->
+        <!-- ================================================= -->
+
+        <figure class="analysis-card breakdown-figure">
+
+            <img
+                src="assets/figures/invariance_radar_plot_arxiv.png"
+                class="analysis-figure"
+                alt="Per-phenomenon consistency radar chart for video generators">
+
+            <figcaption>
+
+                <h3>Video Generators</h3>
+
+                <p>
+                    Each polygon exhibits a distinct performance profile rather than uniform
+                    weakness. Veo-3.1 peaks at inertia and gravity; Wan2.2-14B performs
+                    particularly well on friction and pendulum; Cosmos-2.5-2B exhibits a
+                    smaller polygon, with its strongest performance concentrated on gravity
+                    and restitution. No polygon fills the chart.
+                </p>
+
+            </figcaption>
+
+        </figure>
+
+
+        <!-- ================================================= -->
+        <!-- BOTTOM RIGHT: VISION-LANGUAGE MODELS -->
+        <!-- ================================================= -->
+
+        <figure class="analysis-card breakdown-figure">
+
+            <img
+                src="assets/figures/VLM_radar_real_synth.png"
+                class="analysis-figure"
+                alt="Per-phenomenon agreement radar chart for vision-language models">
+
+            <figcaption>
+
+                <h3>Vision-Language Models</h3>
+
+                <p>
+                    VLMs are evaluated on whether they can <em>detect</em> relational physics
+                    violations rather than generate physically correct motion. Their polygons
+                    are smoother and more uniform than those of the generators, but performance
+                    remains limited: three of four models perform near chance level, while the
+                    best-performing model reaches only 0.67 average detection accuracy, just
+                    above chance.
+                </p>
+
+            </figcaption>
+
+        </figure>
 
     </div>
 
 </section>
+
 
 <!-- ===================================================== -->
 <!-- INTERACTIVE GENERATIONS -->
@@ -547,7 +653,7 @@
 
 <section id="generations" class="container">
 
-    <h2>Generated Videos</h2>
+    <h2>Video Gallery</h2>
 
     <p class="section-subtitle">
 
@@ -569,21 +675,23 @@
                 <button class="speed-btn" data-speed="0.5">0.5×</button>
                 <button class="speed-btn active" data-speed="1">1×</button>
             </div>
-            <span class="gallery-panel-hint">Looping preview &middot; Click for detail</span>
+            <!-- <span class="gallery-panel-hint">Looping preview &middot; Click for detail</span> -->
         </div>
 
         <div class="scenario-buttons">
 
-            <button class="scenario-btn active" data-scenario="restitution">
-                Gravity &amp; Restitution
-            </button>
+            
 
-            <button class="scenario-btn" data-scenario="friction">
+            <button class="scenario-btn active" data-scenario="friction">
                 Friction
             </button>
 
             <button class="scenario-btn" data-scenario="inertia">
                 Inertia
+            </button>
+
+            <button class="scenario-btn" data-scenario="restitution">
+                Gravity &amp; Restitution
             </button>
 
             <button class="scenario-btn" data-scenario="projectile">
@@ -630,167 +738,16 @@
 
 
 
-<!-- ===================================================== -->
-<!-- ANALYSIS: RESULTS -->
-<!-- ===================================================== -->
 
-<section class="container wide" id="analysis-results">
 
-    <h2>Per-Phenomenon Breakdown</h2>
 
-    <p class="section-subtitle">
-
-        Generators and vision-language models were tested on the same eight phenomena,
-        but they fail in almost opposite places&mdash;producing an inverse failure profile
-        across the two model classes.
-
-    </p>
-
-    <div class="breakdown-grid">
-
-        <figure class="breakdown-figure">
-            <img
-                src="assets/figures/invariance_radar_plot_arxiv.png"
-                class="analysis-figure"
-                alt="Per-phenomenon consistency spider chart for video generators">
-            <figcaption>
-                <h3>Video Generators</h3>
-                <p>
-                    Each polygon has a distinctive shape rather than uniform weakness:
-                    Veo-3.1 peaks at inertia and gravity; Wan2.2-14B reaches further on
-                    friction and pendulum; Cosmos-2.5-2B's polygon is small and concentrated
-                    on gravity and restitution. No polygon fills the chart.
-                </p>
-            </figcaption>
-        </figure>
-
-        <figure class="breakdown-figure">
-            <img
-                src="assets/figures/VLM_radar_real_synth.png"
-                class="analysis-figure"
-                alt="Per-phenomenon agreement spider chart for vision-language models">
-            <figcaption>
-                <h3>Vision-Language Models</h3>
-                <p>
-                    VLMs are tested on whether they can <em>detect</em> relational physics
-                    violations rather than generate physically correct motion. Polygons are
-                    smoother and more uniform than generator polygons: no VLM exceeds 0.7
-                    average, and all four share the same difficulty pattern&mdash;friction,
-                    inertia, and pendulum are systematically the hardest.
-                </p>
-            </figcaption>
-        </figure>
-
-    </div>
-
-    <!-- <div class="key-finding">
-        <span class="key-finding-tag">Key finding</span>
-        <p>
-            Generators and VLMs fail on <em>different</em> phenomena. On friction, inertia,
-            and pendulum, generators average <span class="number-highlight">0.41</span> while
-            VLMs average <span class="number-highlight">0.21</span>. On projectile and
-            mass&ndash;spring, the relationship inverts: generators average
-            <span class="number-highlight">0.16</span> while VLMs average
-            <span class="number-highlight">0.51</span>. The phenomena VLMs struggle with all
-            involve <em>temporal</em> comparisons (arrival times, periods); those they handle
-            well reduce to <em>spatial</em> comparisons of final positions. We conjecture that
-            current VLMs reason about static spatial outcomes more reliably than about temporal
-            dynamics, while generators preserve time-evolution structure but struggle with
-            paired-object spatial relations.
-        </p>
-    </div> -->
-
-    <!-- VLM TABLE -->
-    <div class="breakdown-table-wrap">
-    <h4>Vision-Language Models &mdash; Per-Phenomenon Scores</h4>
-    <p class="section-text" style="margin-top:0; margin-bottom:0;">
-        For each scene, the VLM receives the full video and a phenomenon-specific
-        PASS/FAIL prompt; responses are scored against Principia ground truth.
-    </p>
-    <table>
-
-        <thead>
-            <tr>
-                <th>Model</th>
-                <th>Restitution</th>
-                <th>Gravity</th>
-                <th>Friction</th>
-                <th>Inertia</th>
-                <th>Projectile</th>
-                <th>Momentum</th>
-                <th>Spring</th>
-                <th>Pendulum</th>
-                <th>Avg</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td>Gemini-3.1-Pro</td>
-                <td>0.439</td>
-                <td>0.489</td>
-                <td>0.498</td>
-                <td><b>0.517</b></td>
-                <td>0.517</td>
-                <td>0.536</td>
-                <td>0.843</td>
-                <td>0.519</td>
-                <td>0.545</td>
-            </tr>
-
-            <tr>
-                <td>Gemini-3-Flash</td>
-                <td><b>0.594</b></td>
-                <td><b>0.644</b></td>
-                <td><b>0.840</b></td>
-                <td>0.465</td>
-                <td><b>0.665</b></td>
-                <td><b>0.556</b></td>
-                <td><b>0.895</b></td>
-                <td><b>0.626</b></td>
-                <td><b>0.661</b></td>
-            </tr>
-
-            <tr>
-                <td>Qwen-32B</td>
-                <td>0.460</td>
-                <td>0.553</td>
-                <td>0.467</td>
-                <td>0.427</td>
-                <td>0.517</td>
-                <td>0.411</td>
-                <td>0.587</td>
-                <td>0.579</td>
-                <td>0.500</td>
-            </tr>
-
-            <tr>
-                <td>Qwen-4B</td>
-                <td>0.588</td>
-                <td>0.580</td>
-                <td>0.642</td>
-                <td>0.427</td>
-                <td>0.547</td>
-                <td>0.450</td>
-                <td>0.535</td>
-                <td>0.557</td>
-                <td>0.541</td>
-            </tr>
-
-        </tbody>
-
-    </table>
-</div>
-
-</section>
 
 
 <!-- ===================================================== -->
 <!-- DATASET STATS -->
 <!-- ===================================================== -->
 
-<section class="container" id="dataset-stats">
+<!-- <section class="container" id="dataset-stats">
 
     <h2>Dataset Stats</h2>
 
@@ -833,7 +790,7 @@
         </div>
     </div>
 
-</section>
+</section> -->
 
 <!-- ===================================================== -->
 <!-- CITATION -->
