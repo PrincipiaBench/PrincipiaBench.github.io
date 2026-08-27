@@ -31,6 +31,7 @@
         <li><a href="#scenarios" data-section="scenarios">Scenarios</a></li>
         <li><a href="#analysis-results" data-section="results">Results</a></li>
         <li><a href="#generations" data-section="generations">Gallery</a></li>
+        <li><a href="#synth-videos" data-section="synth-videos">Synth Videos</a></li>
         <li><a href="#citation" data-section="citation">Citation</a></li>
     </ul>
 </nav>
@@ -100,6 +101,9 @@
 
     
 </section>
+
+
+
 
 
 
@@ -793,6 +797,40 @@ Visual quality and physical fidelity are largely decoupled. All five video
 </section> -->
 
 <!-- ===================================================== -->
+<!-- SYNTH VIDEOS -->
+<!-- ===================================================== -->
+
+<section id="synth-videos" class="container wide">
+
+    <div class="section-heading-row">
+        <h2>Synthetic Videos</h2>
+        <span class="gallery-panel-hint">Use the left and right buttons to browse paired clips</span>
+    </div>
+
+    <p class="section-subtitle">
+        Each scenario includes a synthetic video that demonstrates the underlying physics invariant and an anti-physics counterpart that violates the invariant. 
+    </p>
+
+    <div class="synth-gallery-panel">
+        <div class="synth-carousel-toolbar">
+            <div class="synth-carousel-nav">
+                <button class="carousel-arrow" id="synth-carousel-prev" type="button" aria-label="Scroll synth videos left">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="carousel-arrow" id="synth-carousel-next" type="button" aria-label="Scroll synth videos right">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="synth-carousel-shell">
+            <div class="synth-carousel" id="synth-video-carousel" aria-label="Synthetic scenario and anti-video comparisons"></div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===================================================== -->
 <!-- CITATION -->
 <!-- ===================================================== -->
 
@@ -1421,6 +1459,80 @@ renderGrid = function() {
         getGalleryVideos().forEach(v => { v.playbackRate = rate; });
     }
 };
+
+const SYNTH_VIDEO_DEFS = [
+    { key: 'friction', title: 'Friction', note: 'Scenario and anti-video compare mass-independent sliding.' },
+    { key: 'gravity', title: 'Gravity', note: 'Scenario and anti-video compare fall-time consistency.' },
+    { key: 'projectile', title: 'Projectile', note: 'Scenario and anti-video compare launch range and height.' },
+    { key: 'pendulum', title: 'Pendulum', note: 'Scenario and anti-video compare oscillation period.' },
+    { key: 'restitution', title: 'Restitution', note: 'Scenario and anti-video compare bounce recovery.' },
+    { key: 'moi', title: 'Moment of Inertia', note: 'Scenario and anti-video compare rotational inertia effects.' },
+    { key: 'dual_springs', title: 'Springs', note: 'Scenario and anti-video compare mass displacement.' },
+    { key: 'com', title: 'Momentum', note: 'Scenario and anti-video compare momentum transfer.' },
+];
+
+const synthCarousel = document.getElementById('synth-video-carousel');
+const synthCarouselPrev = document.getElementById('synth-carousel-prev');
+const synthCarouselNext = document.getElementById('synth-carousel-next');
+
+function renderSynthCarousel() {
+    if (!synthCarousel) return;
+
+    synthCarousel.innerHTML = SYNTH_VIDEO_DEFS.map(({ key, title, note }) => `
+        <article class="synth-card" aria-label="${title} synthetic video pair">
+            <div class="synth-card-header">
+                <div>
+                    <h3>${title}</h3>
+                    <p>${note}</p>
+                </div>
+            </div>
+            <div class="synth-card-videos">
+                <figure class="synth-clip">
+                    <figcaption>Scenario</figcaption>
+                    <video class="synth-video" autoplay muted loop playsinline preload="metadata">
+                        <source src="assets/synth-videos/${key}.mp4" type="video/mp4">
+                    </video>
+                </figure>
+                <figure class="synth-clip synth-clip-anti">
+                    <figcaption>Anti</figcaption>
+                    <video class="synth-video" autoplay muted loop playsinline preload="metadata">
+                        <source src="assets/synth-videos/${key}_anti.mp4" type="video/mp4">
+                    </video>
+                </figure>
+            </div>
+        </article>
+    `).join('');
+}
+
+function updateSynthCarouselButtons() {
+    if (!synthCarousel || !synthCarouselPrev || !synthCarouselNext) return;
+
+    const maxScroll = Math.max(0, synthCarousel.scrollWidth - synthCarousel.clientWidth);
+    const atStart = synthCarousel.scrollLeft <= 4;
+    const atEnd = synthCarousel.scrollLeft >= maxScroll - 4;
+
+    synthCarouselPrev.disabled = atStart;
+    synthCarouselNext.disabled = atEnd;
+}
+
+function scrollSynthCarousel(direction) {
+    if (!synthCarousel) return;
+
+    const distance = Math.max(360, Math.round(synthCarousel.clientWidth * 0.82));
+    synthCarousel.scrollBy({ left: direction * distance, behavior: 'smooth' });
+}
+
+renderSynthCarousel();
+updateSynthCarouselButtons();
+
+synthCarouselPrev?.addEventListener('click', () => scrollSynthCarousel(-1));
+synthCarouselNext?.addEventListener('click', () => scrollSynthCarousel(1));
+
+synthCarousel?.addEventListener('scroll', () => {
+    window.requestAnimationFrame(updateSynthCarouselButtons);
+});
+
+window.addEventListener('resize', updateSynthCarouselButtons);
 </script>
 
 <!-- ===================================================== -->
