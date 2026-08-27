@@ -29,6 +29,7 @@
         <li><a href="#abstract" data-section="abstract">Abstract</a></li>
         <li><a href="#motivation" data-section="motivation">Motivation</a></li>
         <li><a href="#scenarios" data-section="scenarios">Scenarios</a></li>
+        <li><a href="#leaderboard" data-section="leaderboard">Leaderboard</a></li>
         <li><a href="#analysis-results" data-section="results">Results</a></li>
         <li><a href="#generations" data-section="generations">Gallery</a></li>
         <li><a href="#synth-videos" data-section="synth-videos">Synth Videos</a></li>
@@ -504,6 +505,275 @@
 
 </section> -->
 
+
+
+<!-- ===================================================== -->
+<!-- LEADERBOARD -->
+<!-- ===================================================== -->
+
+<section class="container wide" id="leaderboard">
+
+    <h2>Leaderboard</h2>
+
+    <p class="section-subtitle">
+        Principia consistency score for video generators (out of 1.0).
+    </p>
+
+    <div class="leaderboard-toolbar">
+        <button class="leaderboard-detail-btn" id="leaderboard-detail-btn" type="button" aria-expanded="false" aria-controls="scenario-leaderboard-panel">
+            In detail
+        </button>
+    </div>
+
+    <div class="analysis-card leaderboard-card">
+
+        <div class="leaderboard-legend" aria-label="Score legend">
+            <span class="legend-item"><span class="legend-swatch legend-swatch-principia"></span>Principia</span>
+            <span class="legend-item"><span class="legend-swatch legend-swatch-vbench"></span>VBench</span>
+        </div>
+
+        <div class="leaderboard-list" role="list" aria-label="Model leaderboard scores">
+
+            <div class="leaderboard-row" role="listitem">
+                <div class="leaderboard-row-head">
+                    <span class="leaderboard-model leaderboard-model-winner">
+                        Wan2.2-14B
+                        <svg class="winner-trophy" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-label="Top model" role="img">
+                            <path d="M18 4V2H6v2H3v2c0 2.2 1.8 4 4 4h.1A5.98 5.98 0 0 0 11 13.9V16H8v2h8v-2h-3v-2.1A5.98 5.98 0 0 0 16.9 10H17c2.2 0 4-1.8 4-4V4h-3zm-2 2h3c0 1.1-.9 2-2 2h-.3c.2-.6.3-1.3.3-2zM5 6h3c0 .7.1 1.4.3 2H8c-1.1 0-2-.9-2-2z"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">Principia</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill" style="--score:0.419;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score">0.419</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">VBench</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill leaderboard-fill-vbench" style="--score:0.780;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score leaderboard-metric-score-vbench">0.780</span>
+                </div>
+            </div>
+
+            <div class="leaderboard-row" role="listitem">
+                <div class="leaderboard-row-head">
+                    <span class="leaderboard-model">Omni</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">Principia</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill" style="--score:0.409;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score">0.409</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">VBench</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill leaderboard-fill-vbench" style="--score:0.810;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score leaderboard-metric-score-vbench">0.810</span>
+                </div>
+            </div>
+
+            <div class="leaderboard-row" role="listitem">
+                <div class="leaderboard-row-head">
+                    <span class="leaderboard-model">Veo-3.1</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">Principia</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill" style="--score:0.379;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score">0.379</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">VBench</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill leaderboard-fill-vbench" style="--score:0.800;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score leaderboard-metric-score-vbench">0.800</span>
+                </div>
+            </div>
+
+            <div class="leaderboard-row" role="listitem">
+                <div class="leaderboard-row-head">
+                    <span class="leaderboard-model">Wan2.2-5B</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">Principia</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill" style="--score:0.205;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score">0.205</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">VBench</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill leaderboard-fill-vbench" style="--score:0.800;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score leaderboard-metric-score-vbench">0.800</span>
+                </div>
+            </div>
+
+            <div class="leaderboard-row" role="listitem">
+                <div class="leaderboard-row-head">
+                    <span class="leaderboard-model">Cosmos-2.5-14B</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">Principia</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill" style="--score:0.199;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score">0.199</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">VBench</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill leaderboard-fill-vbench" style="--score:0.780;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score leaderboard-metric-score-vbench">0.780</span>
+                </div>
+            </div>
+
+            <div class="leaderboard-row" role="listitem">
+                <div class="leaderboard-row-head">
+                    <span class="leaderboard-model">Cosmos-2.5-2B</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">Principia</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill" style="--score:0.148;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score">0.148</span>
+                </div>
+                <div class="leaderboard-metric-row">
+                    <span class="leaderboard-metric-label">VBench</span>
+                    <div class="leaderboard-track" aria-hidden="true">
+                        <span class="leaderboard-fill leaderboard-fill-vbench" style="--score:0.780;"></span>
+                    </div>
+                    <span class="leaderboard-metric-score leaderboard-metric-score-vbench">0.780</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scenario-leaderboard-panel" id="scenario-leaderboard-panel" hidden>
+
+        <h3>Per-Scenario Leaderboards</h3>
+
+        <p class="section-text scenario-leaderboard-subtitle">
+            Ranked by consistency score within each physics scenario.
+        </p>
+
+        <div class="scenario-leaderboard-grid">
+
+            <article class="analysis-card scenario-leaderboard-card">
+                <h4>Restitution</h4>
+                <div class="scenario-leaderboard-list">
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">1. Wan2.2-14B</span><span class="scenario-leaderboard-score">0.504</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.504;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">2. Veo-3.1</span><span class="scenario-leaderboard-score">0.479</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.479;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">3. Omni</span><span class="scenario-leaderboard-score">0.277</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.277;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">4. Cosmos-2.5-2B</span><span class="scenario-leaderboard-score">0.272</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.272;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">5. Cosmos-2.5-14B</span><span class="scenario-leaderboard-score">0.179</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.179;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">6. Wan2.2-5B</span><span class="scenario-leaderboard-score">0.158</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.158;"></span></div></div>
+                </div>
+            </article>
+
+            <article class="analysis-card scenario-leaderboard-card">
+                <h4>Gravity</h4>
+                <div class="scenario-leaderboard-list">
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">1. Wan2.2-14B</span><span class="scenario-leaderboard-score">0.540</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.540;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">2. Veo-3.1</span><span class="scenario-leaderboard-score">0.524</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.524;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">3. Cosmos-2.5-2B</span><span class="scenario-leaderboard-score">0.378</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.378;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">4. Cosmos-2.5-14B</span><span class="scenario-leaderboard-score">0.365</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.365;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">5. Omni</span><span class="scenario-leaderboard-score">0.295</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.295;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">6. Wan2.2-5B</span><span class="scenario-leaderboard-score">0.220</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.220;"></span></div></div>
+                </div>
+            </article>
+
+            <article class="analysis-card scenario-leaderboard-card">
+                <h4>Friction</h4>
+                <div class="scenario-leaderboard-list">
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">1. Omni</span><span class="scenario-leaderboard-score">0.852</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.852;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">2. Wan2.2-14B</span><span class="scenario-leaderboard-score">0.709</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.709;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">3. Veo-3.1</span><span class="scenario-leaderboard-score">0.387</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.387;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">4. Cosmos-2.5-14B</span><span class="scenario-leaderboard-score">0.319</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.319;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">5. Wan2.2-5B</span><span class="scenario-leaderboard-score">0.307</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.307;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">6. Cosmos-2.5-2B</span><span class="scenario-leaderboard-score">0.078</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.078;"></span></div></div>
+                </div>
+            </article>
+
+            <article class="analysis-card scenario-leaderboard-card">
+                <h4>Inertia</h4>
+                <div class="scenario-leaderboard-list">
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">1. Omni</span><span class="scenario-leaderboard-score">0.784</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.784;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">2. Wan2.2-14B</span><span class="scenario-leaderboard-score">0.729</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.729;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">3. Veo-3.1</span><span class="scenario-leaderboard-score">0.669</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.669;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">4. Wan2.2-5B</span><span class="scenario-leaderboard-score">0.470</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.470;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">5. Cosmos-2.5-14B</span><span class="scenario-leaderboard-score">0.171</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.171;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">6. Cosmos-2.5-2B</span><span class="scenario-leaderboard-score">0.044</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.044;"></span></div></div>
+                </div>
+            </article>
+
+            <article class="analysis-card scenario-leaderboard-card">
+                <h4>Projectile</h4>
+                <div class="scenario-leaderboard-list">
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">1. Veo-3.1</span><span class="scenario-leaderboard-score">0.250</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.250;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">2. Wan2.2-14B</span><span class="scenario-leaderboard-score">0.231</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.231;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">3. Omni</span><span class="scenario-leaderboard-score">0.148</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.148;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">4. Cosmos-2.5-14B</span><span class="scenario-leaderboard-score">0.019</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.019;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">5. Wan2.2-5B</span><span class="scenario-leaderboard-score">0.009</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.009;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">6. Cosmos-2.5-2B</span><span class="scenario-leaderboard-score">0.000</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.000;"></span></div></div>
+                </div>
+            </article>
+
+            <article class="analysis-card scenario-leaderboard-card">
+                <h4>Momentum</h4>
+                <div class="scenario-leaderboard-list">
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">1. Cosmos-2.5-2B</span><span class="scenario-leaderboard-score">0.074</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.074;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">2. Wan2.2-5B</span><span class="scenario-leaderboard-score">0.067</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.067;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">3. Omni</span><span class="scenario-leaderboard-score">0.054</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.054;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">4. Wan2.2-14B</span><span class="scenario-leaderboard-score">0.017</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.017;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">5. Cosmos-2.5-14B</span><span class="scenario-leaderboard-score">0.015</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.015;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">6. Veo-3.1</span><span class="scenario-leaderboard-score">0.000</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.000;"></span></div></div>
+                </div>
+            </article>
+
+            <article class="analysis-card scenario-leaderboard-card">
+                <h4>Spring</h4>
+                <div class="scenario-leaderboard-list">
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">1. Veo-3.1</span><span class="scenario-leaderboard-score">0.381</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.381;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">2. Omni</span><span class="scenario-leaderboard-score">0.308</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.308;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">3. Cosmos-2.5-14B</span><span class="scenario-leaderboard-score">0.147</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.147;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">4. Cosmos-2.5-2B</span><span class="scenario-leaderboard-score">0.130</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.130;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">5. Wan2.2-14B</span><span class="scenario-leaderboard-score">0.099</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.099;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">6. Wan2.2-5B</span><span class="scenario-leaderboard-score">0.065</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.065;"></span></div></div>
+                </div>
+            </article>
+
+            <article class="analysis-card scenario-leaderboard-card">
+                <h4>Pendulum</h4>
+                <div class="scenario-leaderboard-list">
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">1. Omni</span><span class="scenario-leaderboard-score">0.554</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.554;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">2. Wan2.2-14B</span><span class="scenario-leaderboard-score">0.519</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.519;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">3. Cosmos-2.5-14B</span><span class="scenario-leaderboard-score">0.380</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.380;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">4. Wan2.2-5B</span><span class="scenario-leaderboard-score">0.346</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.346;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">5. Veo-3.1</span><span class="scenario-leaderboard-score">0.343</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.343;"></span></div></div>
+                    <div class="scenario-leaderboard-row"><span class="scenario-leaderboard-model">6. Cosmos-2.5-2B</span><span class="scenario-leaderboard-score">0.205</span><div class="leaderboard-track" aria-hidden="true"><span class="leaderboard-fill" style="--score:0.205;"></span></div></div>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
 
 
 <!-- ===================================================== -->
@@ -1636,6 +1906,21 @@ document.addEventListener('DOMContentLoaded', () => {
             copyBtn.classList.remove('copied');
             label.textContent = originalLabel;
         }, 1800);
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const detailBtn = document.getElementById('leaderboard-detail-btn');
+    const detailPanel = document.getElementById('scenario-leaderboard-panel');
+    if (!detailBtn || !detailPanel) return;
+
+    detailBtn.addEventListener('click', () => {
+        const isOpen = detailBtn.getAttribute('aria-expanded') === 'true';
+        detailBtn.setAttribute('aria-expanded', String(!isOpen));
+        detailPanel.hidden = isOpen;
+        detailBtn.textContent = isOpen ? 'In detail' : 'Hide detail';
     });
 });
 </script>
