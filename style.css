@@ -1351,7 +1351,7 @@ body[data-theme="light"] .leaderboard-fill-vbench{
 }
 
 .generation-modal-result{
-    display:flex;
+    display:none; /* pass/fail result panel hidden for now — change back to flex to re-enable */
     align-items:center;
     gap:12px;
     margin:0 30px 30px;
@@ -1900,6 +1900,12 @@ tr:nth-child(even){ background:rgba(255,255,255,0.02); }
 
 .generation-card.solo{ grid-column:1 / 2; }
 
+.generation-grid.is-landscape .generation-card:last-child:nth-child(odd){
+    grid-column:1 / -1;
+    max-width:calc(50% - 12px);
+    margin:0 auto;
+}
+
 .generation-grid.is-portrait{
     grid-template-columns:repeat(3, minmax(0, 1fr));
     max-width:900px;
@@ -1907,6 +1913,12 @@ tr:nth-child(even){ background:rgba(255,255,255,0.02); }
 
 .generation-grid.is-portrait .generation-card.solo{
     grid-column:2 / 3;
+}
+
+.generation-grid.is-portrait .generation-card:last-child:nth-child(3n + 1){
+    grid-column:1 / -1;
+    max-width:calc(33.333% - 16px);
+    margin:0 auto;
 }
 
 .generation-card{
@@ -2009,6 +2021,7 @@ tr:nth-child(even){ background:rgba(255,255,255,0.02); }
     padding:3px 10px;
     border-radius:999px;
     flex-shrink:0;
+    display:none; /* pass/fail badges hidden for now — remove this line to re-enable */
 }
 
 .result-badge-pass{
@@ -2682,6 +2695,12 @@ body[data-theme="light"] footer{
     .generation-grid.is-portrait .generation-card.solo{
         grid-column:auto;
     }
+
+    .generation-grid.is-portrait .generation-card:last-child:nth-child(3n + 1){
+        grid-column:auto;
+        max-width:none;
+        margin:0;
+    }
 }
 
 @media(max-width:900px){
@@ -2724,6 +2743,13 @@ body[data-theme="light"] footer{
 
     .generation-grid.is-portrait{
         grid-template-columns:1fr;
+    }
+
+    .generation-grid.is-landscape .generation-card:last-child:nth-child(odd),
+    .generation-grid.is-portrait .generation-card:last-child:nth-child(3n + 1){
+        grid-column:auto;
+        max-width:none;
+        margin:0;
     }
 
     .scenario-grid-portrait-row{
