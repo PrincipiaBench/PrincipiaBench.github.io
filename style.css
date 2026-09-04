@@ -221,6 +221,18 @@ body[data-theme="light"] .theme-icon-moon{ display:block; }
     line-height:1.8;
 }
 
+.authors a{
+    color:inherit;
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color 0.15s ease, color 0.15s ease;
+}
+
+.authors a:hover{
+    color:var(--violet);
+    border-bottom-color:var(--violet);
+}
+
 .affiliations{
     font-family:var(--font-mono);
     font-size:14px;
