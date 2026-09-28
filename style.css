@@ -1963,6 +1963,21 @@ tr:nth-child(even){ background:rgba(255,255,255,0.02); }
     border-color:var(--line);
 }
 
+.generation-card-noclick{
+    cursor:default !important;
+}
+
+.generation-card-noclick:hover{
+    transform:none;
+    box-shadow:none;
+    border-color:var(--line);
+}
+
+.generation-card-noclick:hover .generation-card-media video{
+    transform:none;
+    filter:none;
+}
+
 .generation-card:focus-visible{
     border-color:var(--brass);
     box-shadow:0 0 0 2px rgba(59,130,246,0.35);

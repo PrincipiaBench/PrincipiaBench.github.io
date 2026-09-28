@@ -1442,7 +1442,11 @@ const SCENARIO_MODELS = [
     { key: 'cosmos2',  label: 'Cosmos-2.5-2B'    },
     { key: 'cosmos14', label: 'Cosmos-2.5-14B'   },
     { key: 'omni',     label: 'Omni'             },
+    { key: 'minimax',  label: 'MiniMax'          },
 ];
+
+// Models whose cards are shown for reference but are not clickable (no detail modal).
+const NON_CLICKABLE_MODELS = new Set(['omni', 'minimax']);
 
 const EXAMPLES_PER_SCENARIO = 2;
 
@@ -1685,8 +1689,11 @@ function renderGrid() {
             const txt = r.pass ? 'Pass' : 'Fail';
             badge = `<span class="result-badge ${cls}">${txt}</span>`;
         }
+        const isNonClickable = NON_CLICKABLE_MODELS.has(m.key);
+        const cardClass = isNonClickable ? 'generation-card generation-card-noclick' : 'generation-card';
+        const interactiveAttrs = isNonClickable ? '' : ' tabindex="0" role="button"';
         return `
-        <div class="generation-card" data-model-key="${m.key}" tabindex="0" role="button" aria-label="View ${m.label} generation detail">
+        <div class="${cardClass}" data-model-key="${m.key}"${interactiveAttrs} aria-label="View ${m.label} generation detail">
             <div class="generation-card-media">
                 <video class="generation-card-video" autoplay muted loop playsinline preload="metadata" poster="assets/generations/${currentScenario}/${m.key}/poster${currentExample}.jpg">
                     <source src="assets/generations/${currentScenario}/${m.key}/sample${currentExample}.mp4">
@@ -1702,7 +1709,7 @@ function renderGrid() {
 
     grid.innerHTML = inputFrameCard + modelCards;
 
-    grid.querySelectorAll('.generation-card:not(.generation-card-input)').forEach(card => {
+    grid.querySelectorAll('.generation-card:not(.generation-card-input):not(.generation-card-noclick)').forEach(card => {
         card.addEventListener('click', () => openGenerationModal(card.dataset.modelKey));
         card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
